@@ -1,6 +1,6 @@
 # Bookhub-Project-WebDev
 
-Ini adalah tugas kelompok untuk memenuhi tugas UAS mata kuliah Pemrograman Website. 
+Ini adalah tugas kelompok untuk memenuhi tugas UAS mata kuliah Pemrograman Web. 
 
 Kelompok kami terdiri dari 3 orang yaitu:
 
