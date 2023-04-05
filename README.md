@@ -9,3 +9,11 @@ Kelompok kami terdiri dari 3 orang yaitu:
 - [2110101028 Mandalan](https://github.com/omniset)
 
 Project ini dibuat menggunakan HTML, dan CSS untuk front-end, PHP untuk back-end, dan MySQL sebagai database.
+
+## Cara menggunakan
+
+--
+
+<hr>
+
+*Note: Project ini belum selesai dan masih dalam tahap pengembangan.*
