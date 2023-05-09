@@ -1,43 +1,6 @@
-<?php
-$host = 'localhost';
-$user = 'root';
-$password = '';
-$dbname = 'register_library';
-$conn = mysqli_connect($host, $user, $password, $dbname);
-
-// cek koneksi
-if (mysqli_connect_errno()) {
-    die('Koneksi gagal: ' . mysqli_connect_error());
-}
-
-// Menghandle form registrasi
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Mengambil data dari form
-    $username = $_POST["username"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $confirm_password = $_POST["confirm-password"];
-
-    // Memeriksa kesamaan password
-    if ($password != $confirm_password) {
-        echo "Konfirmasi password tidak sesuai";
-    } else {
-        // Menyimpan data ke dalam tabel pelanggan
-        $sql = "INSERT INTO register (username, email, password, confirm_password) VALUES ('$username', '$email', '$password',
-        '$confirm_password')";
-        if (mysqli_query($conn, $sql)) {
-            echo "Registrasi berhasil";
-            
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
-    }
-    mysqli_close($conn);
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,7 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         border-top-right-radius: 20px;
         border-bottom-right-radius: 20px;
     }
-        </style>
+</style>
+
 <body>
     <div class="form-container">
         <div class="image"></div>
@@ -81,4 +45,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 </body>
+
 </html>

@@ -1,0 +1,45 @@
+.container {
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+/* make the searchbar */
+.search-bar form input {
+    width: 500px;
+    background-color: #fff;
+    border-radius: 50px;
+    padding: 10px 20px;
+    border: 1px solid grey;
+}
+
+/* then the button */
+.search-bar form button {
+    background-color: #04AA6D;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 50px;
+    width: 39px;
+    height: 39px;
+    border: none;
+    margin-left: 10px;
+}
+
+.categories {
+    margin: 20px 0;
+}
+
+.categories button {
+    background-color: white;
+    border: 1px solid #04AA6D;
+    color: #04AA6D;
+    border-radius: 50px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.categories button:hover {
+    color: white;
+    background: #04AA6D;
+}
