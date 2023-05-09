@@ -1,0 +1,82 @@
+/* Reset styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+}
+
+/* Form container styles */
+.form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Image styles */
+.image {
+    flex: 1;
+    height: 465px;
+    background-image: url('img/index.jpg');
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    margin-left:100px;
+}
+
+/* Form styles */
+
+.form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form input[type="text"], .form input[type="email"], .form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.form button[type="submit"] {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.form button[type="submit"]:hover {
+    background-color: #3e8e41;
+}
+
+.form p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.form a:hover {
+    text-decoration: underline;
+}
+/* admin page */
