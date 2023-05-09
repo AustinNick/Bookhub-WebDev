@@ -23,12 +23,12 @@ body {
 .image {
     flex: 1;
     height: 465px;
-    background-image: url('img/index.jpg');
+    background-image: url('../img/index.jpg');
     background-size: cover;
     background-position: center;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    margin-left:100px;
+    margin-left: 100px;
 }
 
 /* Form styles */
@@ -44,7 +44,9 @@ body {
     font-weight: bold;
 }
 
-.form input[type="text"], .form input[type="email"], .form input[type="password"] {
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"] {
     width: 100%;
     padding: 10px;
     border-radius: 5px;
@@ -79,4 +81,5 @@ body {
 .form a:hover {
     text-decoration: underline;
 }
+
 /* admin page */
