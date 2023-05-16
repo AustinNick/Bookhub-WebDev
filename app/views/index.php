@@ -1,11 +1,14 @@
   <?php
   $PageTitle = "Index";
+  if (!isset($_SESSION['username'])) {
+    header("Location: app/views/login.php");
+  }
   include_once("includes/header.php");
 
   function customPageHeader()
   {
   ?>
-    <link rel="stylesheet" href="../../dist/css/index.css">
+    <link rel="stylesheet" href="dist/css/index.css">
 
     <!-- Content -->
     <div class="container">
