@@ -19,16 +19,21 @@ body {
     height: 100vh;
 }
 
+.form {
+    max-width: 400px;
+    margin-right: 100px;
+    background-color: #fff;
+    padding: 72px 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
 /* Image styles */
-.image {
-    flex: 1;
-    height: 465px;
-    background-image: url('../img/index.jpg');
-    background-size: cover;
-    background-position: center;
+.image img{
+    width: auto;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    margin-left: 100px;
 }
 
 /* Form styles */
