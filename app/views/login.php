@@ -11,17 +11,6 @@
 
 <body>
     <style>
-        .form {
-            flex: 1;
-            max-width: 400px;
-            margin-right: 100px;
-            background-color: #fff;
-            padding: 94px 30px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-top-right-radius: 20px;
-            border-bottom-right-radius: 20px;
-        }
-
         .error {
             border: 1px solid #f00;
             background-color: #ffecec;
@@ -33,7 +22,9 @@
         }
     </style>
     <div class="form-container">
-        <div class="image"></div>
+        <div class="image">
+            <img src="../../dist/img/index.jpg">
+        </div>
         <div class="form">
             <h2>Login</h2>
 
