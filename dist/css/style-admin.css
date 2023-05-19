@@ -16,7 +16,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+    position: inherit;
+    position: sticky;
   }
   
   .header__admin-name {
@@ -76,9 +77,9 @@
     background-color: #333;
     color: #fff;
   }
-  
+
   .content {
-    margin: 100px 0 0 200px;
+    margin: 50px 0 0 200px;
     padding: 20px;
   }
   
