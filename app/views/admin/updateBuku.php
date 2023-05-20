@@ -1,21 +1,11 @@
 <?php
 session_start();
 
-$host = 'localhost';  // Replace with your database host
-$db = 'librarydb';   // Replace with your database name
-$user = 'root';  // Replace with your database username
-$password = '';  // Replace with your database password
-
-// Create a database connection
-$conn = new mysqli($host, $user, $password, $db);
-
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include_once("../../config/config.php");
 
 // Function to handle the update action
-function updateBuku($bukuId, $judul, $penulis, $kategori, $sinopsis, $jumlahHalaman, $penerbit, $tahunTerbit, $cover) {
+function updateBuku($bukuId, $judul, $penulis, $kategori, $sinopsis, $jumlahHalaman, $penerbit, $tahunTerbit, $cover)
+{
     global $conn;
     $sql = "UPDATE buku SET judul = '$judul', penulis = '$penulis', kategori = '$kategori', sinopsis = '$sinopsis', jumlah_halaman = $jumlahHalaman, penerbit = '$penerbit', tahun_terbit = $tahunTerbit, cover = '$cover' WHERE buku_id = $bukuId";
     if ($conn->query($sql) === TRUE) {
@@ -65,7 +55,7 @@ if (isset($_GET['bukuId'])) {
             $tahunTerbit = $row['tahun_terbit'];
             $cover = $row['cover'];
 
-                        // Store the previous page URL in a session variable
+            // Store the previous page URL in a session variable
             $_SESSION['previous_page'] = $_SERVER['HTTP_REFERER'];
 
             // Display the update form
@@ -88,7 +78,6 @@ if (isset($_GET['bukuId'])) {
             echo "<input type='text' id='cover' name='cover' value='$cover'><br>";
             echo "<input type='submit' value='Update'>";
             echo "</form>";
-   
         } else {
             echo "Book not found.";
         }
@@ -97,4 +86,3 @@ if (isset($_GET['bukuId'])) {
 
 // Close the database connection
 $conn->close();
-?>

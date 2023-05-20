@@ -17,15 +17,6 @@
     }
     include_once("includes/header.php");
     ?>
-    <!-- Sidebar -->
-
-    <!-- <div class="sidebar">
-        <div class="logo"><img src="../../dist/img/library.png" alt="Logo" width="35"> BookHub</div>
-        <div class="sidebar-section">
-            <a href="index.php" <?= ($PageTitle == "Index") ? "class='active'" : '' ?>>Home</a>
-            <a href="favorite.php" <?= ($PageTitle == "Favorite") ? "class='active'" : '' ?>>Favorite</a>
-        </div>
-    </div> -->
 
     <div class="content">
         <?php if (function_exists('customPageHeader')) {

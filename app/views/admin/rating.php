@@ -8,44 +8,48 @@
   <link rel="stylesheet" href="../../../dist/css/style-admin.css">
 
   <style>
-        /* style.css */
-        table {
-        border-collapse: collapse;
-        margin-left: 100px;
-        }
+    /* style.css */
+    table {
+      border-collapse: collapse;
+      margin-left: 100px;
+    }
 
-        th, td {
-        border: 1px solid #000;
-        padding: 8px 30px;
-        }
+    th,
+    td {
+      border: 1px solid #000;
+      padding: 8px 30px;
+    }
 
-        a{
-        text-decoration: none;
-        }
+    a {
+      text-decoration: none;
+    }
 
-        .update-button, .delete-button {
-        display: inline-block;
-        padding: 5px 10px;
-        background-color: gray;
-        color: white;
-        border: none;
-        border-radius: 3px;
-        }
+    .update-button,
+    .delete-button {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: gray;
+      color: white;
+      border: none;
+      border-radius: 3px;
+    }
 
-        .update-button:hover{
-        background-color: yellow;
-        color:black;
-        }
+    .update-button:hover {
+      background-color: yellow;
+      color: black;
+    }
 
-        .delete-button:hover{
-        background-color: red;
-        }
+    .delete-button:hover {
+      background-color: red;
+    }
   </style>
 </head>
 
 <body>
   <header class="header">
-  <a href="admin.html" style="color: white;" ><h1>Admin</h1></a>
+    <a href="admin.html" style="color: white;">
+      <h1>Admin</h1>
+    </a>
     <div>
       <span class="header__admin-name">John Doe</span>
       <button class="header__logout-button">Logout</button>
@@ -63,50 +67,37 @@
   </nav>
 
   <div class="content">
-        <?php
-        // Database connection settings
-        $host = 'localhost'; // Replace with your database host
-        $db = 'libraryDB'; // Replace with your database name
-        $user = 'root'; // Replace with your database username
-        $password = ''; // Replace with your database password
+    <?php
+    // Database connection settings
+    include_once("../../config/config.php");
 
-        try {
-        // Create a new PDO instance
-        $conn = new PDO("mysql:host=$host;dbname=$db", $user, $password);
+    // Query to fetch data from the Rating table
+    $sql = "SELECT rating_id, user_id, buku_id, nilai_rating FROM tbrating";
+    $result = $konek->query($sql);
 
-        // Set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // Check if any ratings are found
+    if ($result->num_rows > 0) {
+      echo "<table>";
+      echo "<tr><th>Rating ID</th><th>User ID</th><th>Buku ID</th><th>Nilai Rating</th></tr>";
 
-        // Query to fetch data from the Rating table
-        $sql = "SELECT rating_id, user_id, buku_id, nilai_rating FROM Rating";
-        $result = $conn->query($sql);
+      // Output data of each row
+      while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row["rating_id"] . "</td>";
+        echo "<td>" . $row["user_id"] . "</td>";
+        echo "<td>" . $row["buku_id"] . "</td>";
+        echo "<td>" . $row["nilai_rating"] . "</td>";
+        echo "</tr>";
+      }
 
-        // Check if any ratings are found
-        if ($result->rowCount() > 0) {
-            echo "<table>";
-            echo "<tr><th>Rating ID</th><th>User ID</th><th>Buku ID</th><th>Nilai Rating</th></tr>";
+      echo "</table>";
+    } else {
+      echo "<tr><td colspan='4'>No rating found.</td></tr>";
+    }
 
-            // Output data of each row
-            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            echo "<tr>";
-            echo "<td>" . $row["rating_id"] . "</td>";
-            echo "<td>" . $row["user_id"] . "</td>";
-            echo "<td>" . $row["buku_id"] . "</td>";
-            echo "<td>" . $row["nilai_rating"] . "</td>";
-            echo "</tr>";
-            }
-
-            echo "</table>";
-        } else {
-            echo "No ratings found.";
-        }
-        } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
-        }
-
-        // Close the database connection
-        $conn = null;
-        ?>
+    // Close the database connection
+    $konek = null;
+    ?>
 
   </div>
 

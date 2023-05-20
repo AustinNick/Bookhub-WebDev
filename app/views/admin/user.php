@@ -8,44 +8,48 @@
   <link rel="stylesheet" href="../../../dist/css/style-admin.css">
 
   <style>
-        /* style.css */
-        table {
-        border-collapse: collapse;
-        margin-left: 100px;
-        }
+    /* style.css */
+    table {
+      border-collapse: collapse;
+      margin-left: 100px;
+    }
 
-        th, td {
-        border: 1px solid #000;
-        padding: 8px 30px;
-        }
+    th,
+    td {
+      border: 1px solid #000;
+      padding: 8px 30px;
+    }
 
-        a{
-        text-decoration: none;
-        }
+    a {
+      text-decoration: none;
+    }
 
-        .update-button, .delete-button {
-        display: inline-block;
-        padding: 5px 10px;
-        background-color: gray;
-        color: white;
-        border: none;
-        border-radius: 3px;
-        }
+    .update-button,
+    .delete-button {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: gray;
+      color: white;
+      border: none;
+      border-radius: 3px;
+    }
 
-        .update-button:hover{
-        background-color: yellow;
-        color:black;
-        }
+    .update-button:hover {
+      background-color: yellow;
+      color: black;
+    }
 
-        .delete-button:hover{
-        background-color: red;
-        }
+    .delete-button:hover {
+      background-color: red;
+    }
   </style>
 </head>
 
 <body>
   <header class="header">
-  <a href="admin.html" style="color: white;" ><h1>Admin</h1></a>
+    <a href="admin.html" style="color: white;">
+      <h1>Admin</h1>
+    </a>
     <div>
       <span class="header__admin-name">John Doe</span>
       <button class="header__logout-button">Logout</button>
@@ -63,50 +67,38 @@
   </nav>
 
   <div class="content">
-  <?php
-$host = 'localhost';  // Replace with your database host
-$db = 'register_library';   // Replace with your database name
-$user = 'root';  // Replace with your database username
-$password = '';  // Replace with your database password
+    <?php
+    include_once("../../config/config.php");
 
-// Create a database connection
-$conn = new mysqli($host, $user, $password, $db);
+    // Query to fetch users from the register table
+    $sql = "SELECT * FROM tbuser";
+    $result = $konek->query($sql);
 
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    // Check if any users are found
+    if ($result->num_rows > 0) {
+      echo "<table>";
+      echo "<tr><th>ID</th><th>Username</th><th>Email</th><th>Action</th></tr>";
 
-// Query to fetch users from the register table
-$sql = "SELECT * FROM register";
-$result = $conn->query($sql);
-
-// Check if any users are found
-if ($result->num_rows > 0) {
-    echo "<table>";
-    echo "<tr><th>ID</th><th>Username</th><th>Email</th><th>Action</th></tr>";
-
-    // Output data of each row
-    while ($row = $result->fetch_assoc()) {
+      // Output data of each row
+      while ($row = $result->fetch_assoc()) {
         echo "<tr>";
-        echo "<td>" . $row["id"] . "</td>";
+        echo "<td>" . $row["user_id"] . "</td>";
         echo "<td>" . $row["username"] . "</td>";
         echo "<td>" . $row["email"] . "</td>";
         echo "<td>";
-        echo "<a class='update-button' href='updateUser.php?userId=" . $row["id"] . "'>Update</a> ";
-        echo "<a class='delete-button' href='deleteUser.php?userId=" . $row["id"] . "'>Delete</a>";
+        echo "<a class='update-button' href='updateUser.php?userId=" . $row["user_id"] . "'>Update</a> ";
+        echo "<a class='delete-button' href='deleteUser.php?userId=" . $row["user_id"] . "'>Delete</a>";
         echo "</td>";
         echo "</tr>";
+      }
+
+      echo "</table>";
+    } else {
+      echo "No users found.";
     }
 
-    echo "</table>";
-} else {
-    echo "No users found.";
-}
-
-// Close the database connection
-$conn->close();
-?>
+    $konek->close();
+    ?>
 
 
   </div>

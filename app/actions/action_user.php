@@ -32,10 +32,16 @@ if ($action == 'logout') {
             $result = mysqli_query($konek, $sql);
             if (mysqli_num_rows($result) === 1) {
                 session_start();
-                $_SESSION['username'] = $uname;
+                $row = mysqli_fetch_assoc($result);
+                $_SESSION['username'] = $row['username'];
 
-                header("Location: ../views/index.php");
-                exit();
+                if ($row['role'] == 'admin') {
+                    header("Location: ../views/admin/index.php");
+                    exit();
+                } else {
+                    header("Location: ../views/index.php");
+                    exit();
+                }
             } else {
                 header("Location: ../views/login.php?error=Incorrect User Name or Password");
                 exit();

@@ -1,21 +1,11 @@
 <?php
 session_start();
 
-$host = 'localhost';  // Replace with your database host
-$db = 'register_library';   // Replace with your database name
-$user = 'root';  // Replace with your database username
-$password = '';  // Replace with your database password
-
-// Create a database connection
-$conn = new mysqli($host, $user, $password, $db);
-
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include_once("../../config/config.php");
 
 // Function to handle the update action
-function updateUser($userId, $username, $email) {
+function updateUser($userId, $username, $email)
+{
     global $conn;
     $sql = "UPDATE register SET username = '$username', email = '$email' WHERE id = $userId";
     if ($conn->query($sql) === TRUE) {
@@ -72,4 +62,3 @@ if (isset($_GET['userId'])) {
 
 // Close the database connection
 $conn->close();
-?>

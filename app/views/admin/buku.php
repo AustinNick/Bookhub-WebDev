@@ -8,45 +8,47 @@
   <link rel="stylesheet" href="../../../dist/css/style-admin.css">
 
   <style>
-        /* style.css */
-        table {
-        border-collapse: collapse;
-        margin-left: 100px;
-        }
+    /* style.css */
+    table {
+      border-collapse: collapse;
+      margin-left: 100px;
+    }
 
-        th, td {
-        border: 1px solid #000;
-        padding: 8px 30px;
-        }
+    th,
+    td {
+      border: 1px solid #000;
+      padding: 8px 30px;
+    }
 
-        a{
-        text-decoration: none;
-        }
+    a {
+      text-decoration: none;
+    }
 
-        .container {
-            width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+    .container {
+      width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
 
-        h2 {
-            text-align: center;
-        }
+    h2 {
+      text-align: center;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
   </style>
 </head>
 
 <body>
   <header class="header">
-  <a href="admin.html" style="color: white;" ><h1>Admin</h1></a>
+    <a href="admin.html" style="color: white;">
+      <h1>Admin</h1>
+    </a>
     <div>
       <span class="header__admin-name">John Doe</span>
       <button class="header__logout-button">Logout</button>
@@ -66,51 +68,40 @@
   <div class="content">
     <?php
     // Database connection details
-    $host = 'localhost';
-    $dbName = 'librarydb';
-    $username = 'root';
-    $password = '';
-
-    // Create a new PDO instance
-    try {
-        $pdo = new PDO("mysql:host=$host;dbname=$dbName", $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        die("Connection failed: " . $e->getMessage());
-    }
+    include_once("../../config/config.php");
 
     // Check if the form was submitted
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Retrieve form data
-        $judul = $_POST['judul'];
-        $penulis = $_POST['penulis'];
-        $kategori = $_POST['kategori'];
-        $sinopsis = $_POST['sinopsis'];
-        $jumlah_halaman = $_POST['jumlah_halaman'];
-        $penerbit = $_POST['penerbit'];
-        $tahun_terbit = $_POST['tahun_terbit'];
-        $cover = $_POST['cover'];
+      // Retrieve form data
+      $judul = $_POST['judul'];
+      $penulis = $_POST['penulis'];
+      $kategori = $_POST['kategori'];
+      $sinopsis = $_POST['sinopsis'];
+      $jumlah_halaman = $_POST['jumlah_halaman'];
+      $penerbit = $_POST['penerbit'];
+      $tahun_terbit = $_POST['tahun_terbit'];
+      $cover = $_POST['cover'];
 
-        // Prepare and execute the SQL statement
-        $sql = "INSERT INTO buku (judul, penulis, kategori, sinopsis, jumlah_halaman, penerbit, tahun_terbit, cover)
+      // Prepare and execute the SQL statement
+      $sql = "INSERT INTO buku (judul, penulis, kategori, sinopsis, jumlah_halaman, penerbit, tahun_terbit, cover)
                 VALUES (:judul, :penulis, :kategori, :sinopsis, :jumlah_halaman, :penerbit, :tahun_terbit, :cover)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':judul', $judul);
-        $stmt->bindParam(':penulis', $penulis);
-        $stmt->bindParam(':kategori', $kategori);
-        $stmt->bindParam(':sinopsis', $sinopsis);
-        $stmt->bindParam(':jumlah_halaman', $jumlah_halaman);
-        $stmt->bindParam(':penerbit', $penerbit);
-        $stmt->bindParam(':tahun_terbit', $tahun_terbit);
-        $stmt->bindParam(':cover', $cover);
-        
-        if ($stmt->execute()) {
-            // Data inserted successfully
-            echo "Data inserted successfully.";
-        } else {
-            // Error occurred
-            echo "Error: " . $stmt->errorInfo()[2];
-        }
+      $stmt = $pdo->prepare($sql);
+      $stmt->bindParam(':judul', $judul);
+      $stmt->bindParam(':penulis', $penulis);
+      $stmt->bindParam(':kategori', $kategori);
+      $stmt->bindParam(':sinopsis', $sinopsis);
+      $stmt->bindParam(':jumlah_halaman', $jumlah_halaman);
+      $stmt->bindParam(':penerbit', $penerbit);
+      $stmt->bindParam(':tahun_terbit', $tahun_terbit);
+      $stmt->bindParam(':cover', $cover);
+
+      if ($stmt->execute()) {
+        // Data inserted successfully
+        echo "Data inserted successfully.";
+      } else {
+        // Error occurred
+        echo "Error: " . $stmt->errorInfo()[2];
+      }
     }
     ?>
 
@@ -118,36 +109,36 @@
   </div>
 
   <div class="container">
-        <h2>Add Book</h2>
-        <form method="POST" action="">
-            <label for="judul">Judul:</label>
-            <input type="text" name="judul" id="judul" required>
+    <h2>Add Book</h2>
+    <form method="POST" action="">
+      <label for="judul">Judul:</label>
+      <input type="text" name="judul" id="judul" required>
 
-            <label for="penulis">Penulis:</label>
-            <input type="text" name="penulis" id="penulis" required>
+      <label for="penulis">Penulis:</label>
+      <input type="text" name="penulis" id="penulis" required>
 
-            <label for="kategori">Kategori:</label>
-            <input type="text" name="kategori" id="kategori" required>
+      <label for="kategori">Kategori:</label>
+      <input type="text" name="kategori" id="kategori" required>
 
-            <label for="sinopsis">Sinopsis:</label>
-            <textarea name="sinopsis" id="sinopsis" required></textarea>
+      <label for="sinopsis">Sinopsis:</label>
+      <textarea name="sinopsis" id="sinopsis" required></textarea>
 
-            <label for="jumlah_halaman">Jumlah Halaman:</label>
-            <input type="number" name="jumlah_halaman" id="jumlah_halaman" required>
+      <label for="jumlah_halaman">Jumlah Halaman:</label>
+      <input type="number" name="jumlah_halaman" id="jumlah_halaman" required>
 
-            <label for="penerbit">Penerbit:</label>
-            <input type="text" name="penerbit" id="penerbit" required>
+      <label for="penerbit">Penerbit:</label>
+      <input type="text" name="penerbit" id="penerbit" required>
 
-            <label for="tahun_terbit">Tahun Terbit:</label>
-            <input type="number" name="tahun_terbit" id="tahun_terbit" required>
+      <label for="tahun_terbit">Tahun Terbit:</label>
+      <input type="number" name="tahun_terbit" id="tahun_terbit" required>
 
-            <label for="cover">Cover:</label>
-            <input type="text" name="cover" id="cover" required>
+      <label for="cover">Cover:</label>
+      <input type="text" name="cover" id="cover" required>
 
-            <input type="submit" value="Submit">
-            
-        </form>
-    </div>
+      <input type="submit" value="Submit">
+
+    </form>
+  </div>
   <footer class="footer">
     <p>&copy; 2023 Admin Page</p>
   </footer>
