@@ -9,7 +9,7 @@
   }
   
   .header {
-    background-color: #333;
+    background: linear-gradient(to right, #2515ff, #a7d7ff);
     color: #fff;
     padding: 20px;
     text-align: center;
@@ -19,11 +19,21 @@
     position: inherit;
     position: sticky;
   }
+
+  .headerlogo{
+    color: white;
+    text-decoration: none;
+  }
+  
+  .headerlogo:hover{
+    color: black;
+  }
   
   .header__admin-name {
     font-size: 24px;
     font-weight: bold;
     margin-right: 10px;
+    color: black;
   }
   
   .header__logout-button {
@@ -43,7 +53,7 @@
   }
   
   .navbar {
-    background-color: #f1f1f1;
+    background-color: #18a3ff;
     height: 100%;
     width: 200px;
     position: fixed;
@@ -74,13 +84,14 @@
   }
   
   .navbar li a:hover {
-    background-color: #333;
-    color: #fff;
+    background-color: #0afafe;
+    color: #000000;
   }
 
   .content {
     margin: 50px 0 0 200px;
-    padding: 20px;
+    padding: 30px;
+    font-size: 30px;
   }
   
   .footer {
