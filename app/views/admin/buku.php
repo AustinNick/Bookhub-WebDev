@@ -23,8 +23,8 @@ function customPageHeader()
     }
 
     .container {
-      width: 400px;
-      margin: 0 auto;
+      width: 300px;
+      margin-left: 700px;
       padding: 20px;
       background-color: #fff;
       border: 1px solid #ccc;
@@ -38,6 +38,27 @@ function customPageHeader()
     label {
       display: block;
       margin-bottom: 5px;
+    }
+
+    .button {
+      margin-top: 10px;
+      display: block;
+      background-color: lightgreen;
+      color: black;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 3px;
+    }
+
+    .button:hover {
+      color: white;
+      background-color: black;
+    }
+
+    .content {
+      margin: 0px 0 0 200px;
+      padding: 30px;
+      font-size: 30px;
     }
   </style>
   <?php
@@ -79,10 +100,6 @@ function customPageHeader()
     }
   }
   ?>
-
-
-  </div>
-
   <div class="container">
     <h2>Add Book</h2>
     <form method="POST" action="">
@@ -110,7 +127,8 @@ function customPageHeader()
       <label for="cover">Cover:</label>
       <input type="text" name="cover" id="cover" required>
 
-      <input type="submit" value="Submit">
+      <input type="submit" value="Submit" class="button">
 
     </form>
-  <?php }
+  </div>
+<?php }

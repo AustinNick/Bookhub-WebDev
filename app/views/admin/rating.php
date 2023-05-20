@@ -5,35 +5,41 @@ include_once("template.php");
 function customPageHeader()
 {
 ?>
-    <?php
-    // Database connection settings
-    include_once("../../config/config.php");
+    <table>
+        <tr>
+            <th>Rating ID</th>
+            <th>User ID</th>
+            <th>Buku ID</th>
+            <th>Nilai Rating</th>
+        </tr>
+        <?php
+        // Database connection settings
+        include_once("../../config/config.php");
 
         // Query to fetch data from the Rating table
-        $sql = "SELECT rating_id, user_id, buku_id, nilai_rating FROM Rating";
-        $result = $conn->query($sql);
+        $sql = "SELECT rating_id, user_id, buku_id, nilai_rating FROM tbrating";
+        $result = $konek->query($sql);
 
         // Check if any ratings are found
-        if ($result->rowCount() > 0) {
-            echo "<table>";
-            echo "<tr><th>Rating ID</th><th>User ID</th><th>Buku ID</th><th>Nilai Rating</th></tr>";
+        if ($result->num_rows > 0) {
+            echo "";
+            echo "";
 
             // Output data of each row
-            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            echo "<tr>";
-            echo "<td>" . $row["rating_id"] . "</td>";
-            echo "<td>" . $row["user_id"] . "</td>";
-            echo "<td>" . $row["buku_id"] . "</td>";
-            echo "<td>" . $row["nilai_rating"] . "</td>";
-            echo "</tr>";
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>" . $row["rating_id"] . "</td>";
+                echo "<td>" . $row["user_id"] . "</td>";
+                echo "<td>" . $row["buku_id"] . "</td>";
+                echo "<td>" . $row["nilai_rating"] . "</td>";
+                echo "</tr>";
             }
-
-            echo "</table>";
         } else {
-            echo "No ratings found.";
+            echo "<tr><td colspan='4'><center>No ratings found!</center></td></tr>";
         }
-        
-        $conn = null;
+
+        $konek = null;
         ?>
+    </table>
 
 <?php }

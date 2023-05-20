@@ -6,51 +6,57 @@ function customPageHeader()
 {
 ?>
   <style>
-        /* style.css */
-        table {
-        border-collapse: collapse;
-        margin-left: 50px;
-        }
+    /* style.css */
+    table {
+      border-collapse: collapse;
+      margin: 0 auto;
+    }
 
-        th, td {
-        border: 1px solid #000;
-        padding: 8px 8px;
-        }
+    th,
+    td {
+      border: 1px solid #000;
+      padding: 8px 8px;
+    }
 
-        a{
-        text-decoration: none;
-        }
+    a {
+      text-decoration: none;
+    }
 
-        .update-button, .delete-button {
-        display: inline-block;
-        padding: 5px 10px;
-        background-color: gray;
-        color: white;
-        border: none;
-        border-radius: 3px;
-        transition: box-shadow 0.3s ease;
-        }
+    .update-button,
+    .delete-button {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: gray;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      transition: box-shadow 0.3s ease;
+    }
 
-        .update-button:hover,
-        .delete-button:hover{
-          box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
-        }
-        
-        .update-button{
-          background-color: yellow;
-          color: black;
-        }
+    .update-button:hover,
+    .delete-button:hover {
+      box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
+    }
 
-        .delete-button{
-          background-color: red;
-          color: white;
-        }
+    .update-button {
+      background-color: yellow;
+      color: black;
+    }
 
-        .content {
-          margin: 50px 0 0 350px;
-          padding: 20px;
-          font-size: 15px
-        }
+    .delete-button {
+      background-color: red;
+      color: white;
+    }
+
+    .content {
+      padding: 20px;
+      font-size: 15px
+    }
+
+    .pagination {
+      margin: 10px 0;
+      text-align: center;
+    }
   </style>
   <table>
     <tr>

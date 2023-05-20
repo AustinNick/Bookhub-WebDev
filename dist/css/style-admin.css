@@ -1,108 +1,115 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-  }
-  
-  .header {
-    background: linear-gradient(to right, #2515ff, #a7d7ff);
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: inherit;
-    position: sticky;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .headerlogo{
-    color: white;
-    text-decoration: none;
-  }
-  
-  .headerlogo:hover{
-    color: black;
-  }
-  
-  .header__admin-name {
-    font-size: 24px;
-    font-weight: bold;
-    margin-right: 10px;
-    color: black;
-  }
-  
-  .header__logout-button {
-    background-color: #fff;
-    color: #333;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    font-weight: bold;
-  }
-  
-  .header__logout-button:hover {
-    background-color: #ff0000;
-    color: #fff;
-  }
-  
-  .navbar {
-    background-color: #18a3ff;
-    height: 100%;
-    width: 200px;
-    position: fixed;
-    top: 77px;
-    left: 0;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .navbar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .navbar li {
-    margin-bottom: 10px;
-  }
-  
-  .navbar li a {
-    display: block;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #fff;
-    color: #333;
-    text-decoration: none;
-    transition: all 0.2s ease-in-out;
-  }
-  
-  .navbar li a:hover {
-    background-color: #0afafe;
-    color: #000000;
-  }
+body {
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  background: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: inherit;
+  position: sticky;
+}
+
+.header a {
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.headerlogo {
+  color: white;
+  text-decoration: none;
+}
+
+.headerlogo:hover {
+  color: black;
+}
+
+.header__admin-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 10px;
+  color: white;
+  text-transform: capitalize;
+}
+
+.header__logout-button {
+  background-color: #fff;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-weight: bold;
+}
+
+.header__logout-button:hover {
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.navbar {
+  background-color: #C7C7C7;
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  top: 77px;
+  left: 0;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar li {
+  margin-bottom: 10px;
+}
+
+.navbar li a {
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.navbar li a:hover {
+  background-color: #7e7e7e;
+  color: #fff;
+}
 
 .content {
   margin: 50px 0 0 200px;
   padding: 20px;
 }
-  
-  .footer {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
-  
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
 .active {
   background-color: #333 !important;
   color: #fff !important;

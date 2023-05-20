@@ -6,6 +6,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= isset($PageTitle) ? $PageTitle : "Default Title" ?></title>
+    <link rel="stylesheet" href="../../../dist/css/style-admin.css">
+
+    <style>
+        /* style.css */
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+
+        th,
+        td {
+            border: 1px solid #000;
+            padding: 8px 30px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .update-button,
+        .delete-button {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: gray;
+            color: white;
+            border: none;
+            border-radius: 3px;
+        }
+
+        .update-button:hover {
+            background-color: yellow;
+            color: black;
+        }
+
+        .delete-button:hover {
+            background-color: red;
+        }
+
+        .content {
+            padding: 20px;
+            font-size: 15px
+        }
+    </style>
+    </style>
 </head>
 
 <body>
@@ -17,22 +61,22 @@
     ?>
 
     <header class="header">
-        <a href="admin.html" style="color: white;text-decoration: none;">
-            <h1>Admin</h1>
-        </a>
+
+        <h1><a href="index.php" class="admin">Admin</a></h1>
+
         <div>
             <span class="header__admin-name"><?= $_SESSION['username'] ?></span>
-            <button class="header__logout-button">Logout</button>
+            <a href="../../actions/action_user.php?action=logout"><button class="header__logout-button">Logout</button></a>
         </div>
     </header>
 
     <nav class="navbar">
         <ul>
-            <li><a href="user.php">User</a></li>
-            <li><a href="buku.php">Buku</a></li>
-            <li><a href="daftarBuku.php">Daftar Buku</a></li>
-            <li><a href="rating.php">Rating</a></li>
-            <li><a href="favorite.php">Favorite</a></li>
+            <li><a href="user.php" <?= ($PageTitle == "Table User") ? "class='active'" : '' ?>>User</a></li>
+            <li><a href="buku.php" <?= ($PageTitle == "Buku") ? "class='active'" : '' ?>>Buku</a></li>
+            <li><a href="daftarBuku.php" <?= ($PageTitle == "Table Buku") ? "class='active'" : '' ?>>Daftar Buku</a></li>
+            <li><a href="rating.php" <?= ($PageTitle == "Table Rating") ? "class='active'" : '' ?>>Rating</a></li>
+            <li><a href="favorite.php" <?= ($PageTitle == "Table Favorit") ? "class='active'" : '' ?>>Favorite</a></li>
         </ul>
     </nav>
 
