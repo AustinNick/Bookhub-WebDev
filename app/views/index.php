@@ -97,19 +97,44 @@
 
     <!-- kategori -->
     <div class="categories">
-      <p class="text-div">Kategori</p>
+      <div class="top-text-div">
+        <p class="text-div">Kategori</p>
+        <a href=""><i class="fa fa-plus"></i> View All</a>
+      </div>
 
-      <div>
-        <div>Sci-fi</div>
-        <div>Horror</div>
-        <div>Comedy</div>
-        <div>Thriller</div>
-        <div>Adventure</div>
-        <div>Biography</div>
-        <div>History</div>
-        <div>Science</div>
+      <div class="wrapp">
+        <div>
+          <button id="slideLeft"><i class="fa fa-arrow-left"></i></button>
+        </div>
+        <div id="categories" class="categories-place">
+          <div>Sci-fi</div>
+          <div>Horror</div>
+          <div>Comedy</div>
+          <div>Thriller</div>
+          <div>Adventure</div>
+          <div>Biography</div>
+          <div>History</div>
+          <div>Science</div>
+          <div>Science</div>
+          <div>Science</div>
+          <div>Science</div>
+        </div>
+        <div>
+          <button id="slideRight"> <i class="fa fa-arrow-right"></i> </button>
+        </div>
       </div>
     </div>
 
+    <script>
+      const buttonRight = document.getElementById('slideRight');
+      const buttonLeft = document.getElementById('slideLeft');
+
+      buttonRight.onclick = function() {
+        document.getElementById('categories').scrollLeft += 190;
+      };
+      buttonLeft.onclick = function() {
+        document.getElementById('categories').scrollLeft -= 190;
+      };
+    </script>
 
   <?php }

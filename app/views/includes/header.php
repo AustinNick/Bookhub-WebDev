@@ -32,6 +32,10 @@
             customPageHeader();
         } ?>
     </div>
+
+    <div class="footer">
+        <p>BookHub &copy; 2021</p>
+    </div>
 </body>
 
 </html>

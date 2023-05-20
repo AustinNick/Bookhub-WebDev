@@ -2,6 +2,11 @@
   margin: 0;
   padding: 0;
   font-family: 'Open sans', sans-serif;
+  scroll-behavior: smooth;
+}
+
+.content {
+  height: auto;
 }
 
 .dropdown {
@@ -75,10 +80,6 @@
 .sidebar a:hover:not(.active) {
   transform: translateY(-5px);
   box-shadow: 0px 5px 10px grey;
-}
-
-div.content {
-  height: 100vh;
 }
 
 @media screen and (max-width: 700px) {
