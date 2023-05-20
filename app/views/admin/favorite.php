@@ -1,50 +1,10 @@
 <?php
-$PageTitle = "Index";
+$PageTitle = "Table Favorit";
 include_once("template.php");
 
 function customPageHeader()
 {
 ?>
-  <style>
-    <style>
-
-    /* style.css */
-    table {
-      border-collapse: collapse;
-      margin-left: 100px;
-    }
-
-    th,
-    td {
-      border: 1px solid #000;
-      padding: 8px 30px;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    .update-button,
-    .delete-button {
-      display: inline-block;
-      padding: 5px 10px;
-      background-color: gray;
-      color: white;
-      border: none;
-      border-radius: 3px;
-    }
-
-    .update-button:hover {
-      background-color: yellow;
-      color: black;
-    }
-
-    .delete-button:hover {
-      background-color: red;
-    }
-  </style>
-  </style>
-  <link rel="stylesheet" href="../../../dist/css/style-admin.css">
   <table>
     <tr>
       <th>Favorite ID</th>

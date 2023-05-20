@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$PageTitle = "Buku";
+include_once("template.php");
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Page</title>
-  <link rel="stylesheet" href="../../../dist/css/style-admin.css">
-
+function customPageHeader()
+{
+?>
   <style>
     /* style.css */
     table {
@@ -42,68 +40,45 @@
       margin-bottom: 5px;
     }
   </style>
-</head>
+  <?php
+  // Database connection details
+  include_once("../../config/config.php");
 
-<body>
-  <header class="header">
-    <a href="admin.html" style="color: white;">
-      <h1>Admin</h1>
-    </a>
-    <div>
-      <span class="header__admin-name">John Doe</span>
-      <button class="header__logout-button">Logout</button>
-    </div>
-  </header>
 
-  <nav class="navbar">
-    <ul>
-      <li><a href="user.php">User</a></li>
-      <li><a href="#">Buku</a></li>
-      <li><a href="daftarBuku.php">Daftar Buku</a></li>
-      <li><a href="rating.php">Rating</a></li>
-      <li><a href="favorite.php">Favorite</a></li>
-    </ul>
-  </nav>
+  // Check if the form was submitted
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve form data
+    $judul = $_POST['judul'];
+    $penulis = $_POST['penulis'];
+    $kategori = $_POST['kategori'];
+    $sinopsis = $_POST['sinopsis'];
+    $jumlah_halaman = $_POST['jumlah_halaman'];
+    $penerbit = $_POST['penerbit'];
+    $tahun_terbit = $_POST['tahun_terbit'];
+    $cover = $_POST['cover'];
 
-  <div class="content">
-    <?php
-    // Database connection details
-    include_once("../../config/config.php");
-
-    // Check if the form was submitted
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      // Retrieve form data
-      $judul = $_POST['judul'];
-      $penulis = $_POST['penulis'];
-      $kategori = $_POST['kategori'];
-      $sinopsis = $_POST['sinopsis'];
-      $jumlah_halaman = $_POST['jumlah_halaman'];
-      $penerbit = $_POST['penerbit'];
-      $tahun_terbit = $_POST['tahun_terbit'];
-      $cover = $_POST['cover'];
-
-      // Prepare and execute the SQL statement
-      $sql = "INSERT INTO buku (judul, penulis, kategori, sinopsis, jumlah_halaman, penerbit, tahun_terbit, cover)
+    // Prepare and execute the SQL statement
+    $sql = "INSERT INTO buku (judul, penulis, kategori, sinopsis, jumlah_halaman, penerbit, tahun_terbit, cover)
                 VALUES (:judul, :penulis, :kategori, :sinopsis, :jumlah_halaman, :penerbit, :tahun_terbit, :cover)";
-      $stmt = $pdo->prepare($sql);
-      $stmt->bindParam(':judul', $judul);
-      $stmt->bindParam(':penulis', $penulis);
-      $stmt->bindParam(':kategori', $kategori);
-      $stmt->bindParam(':sinopsis', $sinopsis);
-      $stmt->bindParam(':jumlah_halaman', $jumlah_halaman);
-      $stmt->bindParam(':penerbit', $penerbit);
-      $stmt->bindParam(':tahun_terbit', $tahun_terbit);
-      $stmt->bindParam(':cover', $cover);
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':judul', $judul);
+    $stmt->bindParam(':penulis', $penulis);
+    $stmt->bindParam(':kategori', $kategori);
+    $stmt->bindParam(':sinopsis', $sinopsis);
+    $stmt->bindParam(':jumlah_halaman', $jumlah_halaman);
+    $stmt->bindParam(':penerbit', $penerbit);
+    $stmt->bindParam(':tahun_terbit', $tahun_terbit);
+    $stmt->bindParam(':cover', $cover);
 
-      if ($stmt->execute()) {
-        // Data inserted successfully
-        echo "Data inserted successfully.";
-      } else {
-        // Error occurred
-        echo "Error: " . $stmt->errorInfo()[2];
-      }
+    if ($stmt->execute()) {
+      // Data inserted successfully
+      echo "Data inserted successfully.";
+    } else {
+      // Error occurred
+      echo "Error: " . $stmt->errorInfo()[2];
     }
-    ?>
+  }
+  ?>
 
 
   </div>
@@ -138,11 +113,4 @@
       <input type="submit" value="Submit">
 
     </form>
-  </div>
-  <footer class="footer">
-    <p>&copy; 2023 Admin Page</p>
-  </footer>
-
-</body>
-
-</html>
+  <?php }

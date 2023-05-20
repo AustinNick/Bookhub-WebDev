@@ -1,72 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$PageTitle = "Table Rating";
+include_once("template.php");
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Page</title>
-  <link rel="stylesheet" href="../../../dist/css/style-admin.css">
-
-  <style>
-    /* style.css */
-    table {
-      border-collapse: collapse;
-      margin-left: 100px;
-    }
-
-    th,
-    td {
-      border: 1px solid #000;
-      padding: 8px 30px;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    .update-button,
-    .delete-button {
-      display: inline-block;
-      padding: 5px 10px;
-      background-color: gray;
-      color: white;
-      border: none;
-      border-radius: 3px;
-    }
-
-    .update-button:hover {
-      background-color: yellow;
-      color: black;
-    }
-
-    .delete-button:hover {
-      background-color: red;
-    }
-  </style>
-</head>
-
-<body>
-  <header class="header">
-    <a href="admin.html" style="color: white;">
-      <h1>Admin</h1>
-    </a>
-    <div>
-      <span class="header__admin-name">John Doe</span>
-      <button class="header__logout-button">Logout</button>
-    </div>
-  </header>
-
-  <nav class="navbar">
-    <ul>
-      <li><a href="user.php">User</a></li>
-      <li><a href="buku.php">Buku</a></li>
-      <li><a href="daftarBuku.php">Daftar Buku</a></li>
-      <li><a href="#">Rating</a></li>
-      <li><a href="favorite.php">Favorite</a></li>
-    </ul>
-  </nav>
-
-  <div class="content">
+function customPageHeader()
+{
+?>
     <?php
     // Database connection settings
     include_once("../../config/config.php");
@@ -99,12 +37,4 @@
     $konek = null;
     ?>
 
-  </div>
-
-  <footer class="footer">
-    <p>&copy; 2023 Admin Page</p>
-  </footer>
-
-</body>
-
-</html>
+<?php }
