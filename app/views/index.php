@@ -9,7 +9,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
     <link rel="stylesheet" href="../../dist/css/index.css">
     <div class="container">
-      <div class="top-nav">
+      <div id="nav" class="top-nav">
         <div class="search-bar">
           <form action="index.php" method="get">
             <!-- <input type="text" name="search" placeholder="Search for books"> -->
@@ -52,8 +52,41 @@
       </div>
     </div>
 
+    <!-- kategori -->
+    <div class="categories">
+      <div class="top-text-div">
+        <p class="text-div">Kategori</p>
+        <a href=""><i class="fa fa-plus"></i> View All</a>
+      </div>
+
+      <div class="wrapp">
+        <div>
+          <button id="slideLeft"><i class="fa fa-arrow-left"></i></button>
+        </div>
+        <div id="categories" class="categories-place">
+          <div>Sci-fi</div>
+          <div>Horror</div>
+          <div>Comedy</div>
+          <div>Thriller</div>
+          <div>Adventure</div>
+          <div>Biography</div>
+          <div>History</div>
+          <div>Science</div>
+          <div>Science</div>
+          <div>Science</div>
+          <div>Science</div>
+        </div>
+        <div>
+          <button id="slideRight"> <i class="fa fa-arrow-right"></i> </button>
+        </div>
+      </div>
+    </div>
+
     <div class="new-release">
-      <p class="text-div">New Release</p>
+      <div class="top-text-div">
+        <p class="text-div">New Release</p>
+        <a href=""><i class="fa fa-plus"></i> View All</a>
+      </div>
       <div class="new-release-book-wrap">
         <div class="book">
           <img src="../../dist/img/book/book.jpg" alt="">
@@ -93,39 +126,8 @@
       </div>
     </div>
 
-    <div></div>
-
-    <!-- kategori -->
-    <div class="categories">
-      <div class="top-text-div">
-        <p class="text-div">Kategori</p>
-        <a href=""><i class="fa fa-plus"></i> View All</a>
-      </div>
-
-      <div class="wrapp">
-        <div>
-          <button id="slideLeft"><i class="fa fa-arrow-left"></i></button>
-        </div>
-        <div id="categories" class="categories-place">
-          <div>Sci-fi</div>
-          <div>Horror</div>
-          <div>Comedy</div>
-          <div>Thriller</div>
-          <div>Adventure</div>
-          <div>Biography</div>
-          <div>History</div>
-          <div>Science</div>
-          <div>Science</div>
-          <div>Science</div>
-          <div>Science</div>
-        </div>
-        <div>
-          <button id="slideRight"> <i class="fa fa-arrow-right"></i> </button>
-        </div>
-      </div>
-    </div>
-
     <script>
+      // untuk categori
       const buttonRight = document.getElementById('slideRight');
       const buttonLeft = document.getElementById('slideLeft');
 
@@ -135,6 +137,27 @@
       buttonLeft.onclick = function() {
         document.getElementById('categories').scrollLeft -= 190;
       };
+
+      // untuk scroll navbar
+      window.onscroll = function() {
+        scrollFunction()
+      };
+
+      function scrollFunction() {
+        if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+          document.getElementById("nav").style.background = "white";
+          document.getElementById("nav").style.color = "black";
+          document.getElementById("nav").style.transform = "translateY(0px)";
+          // document.getElementById("nav").style.padding = "30px 0";
+          // document.getElementById("logo").style.fontSize = "25px";
+        } else {
+          document.getElementById("nav").style.background = "transparent";
+          document.getElementById("nav").style.color = "white";
+          document.getElementById("nav").style.transform = "translateY(-10px)";
+          // document.getElementById("nav").style.padding = "40px 0";
+          // document.getElementById("logo").style.fontSize = "35px";
+        }
+      }
     </script>
 
   <?php }

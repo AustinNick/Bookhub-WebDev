@@ -104,7 +104,7 @@ CREATE TABLE `tbuser` (
 --
 
 INSERT INTO `tbuser` (`user_id`, `nama`, `username`, `email`, `password`) VALUES
-(1, 'hansel', 'hansel123', 'hansel@gmail.com', 'hansel123\r\n');
+(1, 'hansel', 'hansel123', 'hansel@gmail.com', 'hansel123');
 
 --
 -- Indexes for dumped tables
