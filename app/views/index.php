@@ -1,7 +1,6 @@
   <?php
   $PageTitle = "Index";
   include_once("includes/header.php");
-
   function customPageHeader()
   {
   ?>
@@ -39,18 +38,28 @@
 
       <div class="content-header">
         <div class="penjelasan-buku">
-          <p class="genre">Fiction</p>
-          <p class="judul-buku">Judul Buku</p>
-          <p class="author">by Austin</p>
+          <?php
+          include
+            "../config/config.php";
 
-          <p class="deskripsi">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim vitae quas a, doloribus quos natus voluptatem at accusantium nesciunt mollitia illo corrupti ab quaerat consectetur aliquam reiciendis? Minus, odio quo?</p>
+          $query = "SELECT * FROM tbbuku ORDER BY RAND() LIMIT 1";
+          $result = mysqli_query($konek, $query);
+          $row = mysqli_fetch_assoc($result);
+          ?>
+          <p class="genre"><?= $row['kategori'] ?></p>
+          <p class="judul-buku"><?= $row['judul'] ?></p>
+          <p class="author"><?= $row['penulis'] ?></p>
+
+          <p class="deskripsi"><?= $row['sinopsis'] ?></p>
 
           <div>
-            <button class="button-header"><i class="fa fa-heart"></i> Add to Favorite</button>
+            <a href="favorite.php?action=add&id=<?= $row['buku_id'] ?>">
+              <button class="button-header"><i class="fa fa-heart"></i> Add to Favorite</button>
+            </a>
           </div>
         </div>
         <div class="image">
-          <img src="../../dist/img/book/book.jpg" alt="">
+          <img src="../../dist/img/book/<?= $row['image'] ?>" alt="">
         </div>
       </div>
     </div>
@@ -91,41 +100,17 @@
         <a href=""><i class="fa fa-plus"></i> View All</a>
       </div>
       <div class="new-release-book-wrap">
-        <div class="book">
-          <img src="../../dist/img/book/book.jpg" alt="">
-          <p class="judul-book">Judul Buku</p>
-          <p class="genre-book">Fiction</p>
-        </div>
-
-        <div class="book">
-          <img src="../../dist/img/book/book.jpg" alt="">
-          <p class="judul-book">Judul Buku</p>
-          <p class="genre-book">Fiction</p>
-        </div>
-
-        <div class="book">
-          <img src="../../dist/img/book/book.jpg" alt="">
-          <p class="judul-book">Judul Buku</p>
-          <p class="genre-book">Fiction</p>
-        </div>
-
-        <div class="book">
-          <img src="../../dist/img/book/book.jpg" alt="">
-          <p class="judul-book">Judul Buku</p>
-          <p class="genre-book">Fiction</p>
-        </div>
-
-        <div class="book">
-          <img src="../../dist/img/book/book.jpg" alt="">
-          <p class="judul-book">Judul Buku</p>
-          <p class="genre-book">Fiction</p>
-        </div>
-
-        <div class="book">
-          <img src="../../dist/img/book/book.jpg" alt="">
-          <p class="judul-book">Judul Buku</p>
-          <p class="genre-book">Fiction</p>
-        </div>
+        <?php
+        $sql = "SELECT * FROM tbbuku ORDER BY tahun_terbit DESC LIMIT 6";
+        $result = mysqli_query($konek, $sql);
+        while ($row = mysqli_fetch_array($result)) {
+        ?>
+          <div class="book">
+            <img src="../../dist/img/book/<?= $row['image'] ?>" alt="">
+            <p class="judul-book"><?= $row['judul'] ?></p>
+            <p class="genre-book"><?= $row['kategori'] ?></p>
+          </div>
+        <?php } ?>
       </div>
     </div>
 
