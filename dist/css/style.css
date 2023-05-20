@@ -37,7 +37,7 @@ body {
     padding-right: 0;
 }
 
-.image img{
+.image img {
 
     max-width: 100%;
     width: 400px;
@@ -78,6 +78,7 @@ body {
     border-radius: 5px;
     padding: 10px;
     cursor: pointer;
+    width: 100%;
 }
 
 .form button[type="submit"]:hover {

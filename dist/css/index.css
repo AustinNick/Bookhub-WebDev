@@ -1,45 +1,197 @@
 .container {
-    margin-top: 10px;
-    margin-left: 50px;
+    background: url('../img/index/background-header.png') no-repeat center scroll;
+    background-size: cover;
+    height: 60vh;
+    border-radius: 0 0 100px 0;
+}
+
+.top-nav {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    position: sticky;
+    top: 20px;
+    color: white;
+}
+
+.top-nav div {
+    margin-right: 30px;
 }
 
 /* make the searchbar */
 .search-bar form input {
     width: 500px;
-    background-color: #fff;
     border-radius: 50px;
     padding: 10px 20px;
-    border: 1px solid grey;
 }
 
-/* then the button */
-.search-bar form button {
-    background-color: #04AA6D;
+.search-button {
     cursor: pointer;
-    color: #fff;
-    border-radius: 50px;
-    width: 39px;
-    height: 39px;
-    border: none;
-    margin-left: 10px;
 }
 
 .categories {
-    margin: 20px 0;
+    width: 80%;
+    padding-bottom: 40px;
+    margin: 50px auto 0 auto;
 }
 
-.categories button {
-    background-color: white;
-    border: 1px solid #04AA6D;
-    color: #04AA6D;
-    border-radius: 50px;
-    padding: 10px 20px;
-    margin-right: 10px;
-    cursor: pointer;
-    transition: 0.2s ease;
+.categories div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
 }
 
-.categories button:hover {
+.categories div div {
+    padding: 25px 0;
+    margin: 0 5px;
+    box-shadow: 0 1px 10px grey;
+    text-align: center;
+    width: 175px;
     color: white;
-    background: #04AA6D;
+    cursor: pointer;
+    display: inline-block;
+    background: url('../img/index/background-header.jpg') no-repeat center fixed;
+    border-radius: 10px;
+    border: none;
+}
+
+.user-profile {
+    text-transform: capitalize;
+}
+
+.content-header {
+    width: 80%;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    color: white;
+    display: flex;
+}
+
+.genre {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.judul-buku {
+    margin: 5px 0;
+    font-size: 50px;
+    font-weight: 500;
+}
+
+.author {
+    font-size: 16px;
+}
+
+.deskripsi {
+    margin-top: 20px;
+    min-height: 100px;
+    margin-bottom: 10px;
+}
+
+.penjelasan-buku {
+    width: 60%;
+}
+
+.button-header {
+    position: relative;
+    background: none;
+    overflow: hidden;
+    color: white;
+    border-radius: 100px;
+    padding: 15px 25px;
+    border: 1px solid white;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0px 1px 20px black;
+    z-index: 1;
+    transition: 0.4s ease;
+}
+
+.button-header:hover {
+    color: tomato;
+}
+
+.button-header::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: white;
+    border-radius: 100px;
+    z-index: -1;
+    transition: 0.4s ease;
+}
+
+.button-header:hover::before {
+    width: 100%;
+}
+
+.image {
+    width: 40%;
+    text-align: center;
+}
+
+.image img {
+    width: 50%;
+    border-radius: 10px;
+    transition: 0.4s ease;
+}
+
+.image img:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 5px 10px grey;
+}
+
+.new-release {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.text-div {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.new-release-book-wrap {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.book {
+    width: 13%;
+    transition: 0.4s ease;
+    padding: 20px;
+    border-radius: 10px;
+    margin-right: 5px;
+}
+
+.book:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 10px grey;
+    cursor: pointer;
+}
+
+.judul-book {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 7.5px 0;
+}
+
+.genre-book {
+    font-size: 15px;
+    font-weight: 600;
+    color: grey;
+}
+
+.book img {
+    width: 100%;
+    border-radius: 10px;
 }

@@ -5,7 +5,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : "";
 if ($action == 'logout') {
     session_unset();
     session_destroy();
-    header("Location: ../views/index.php");
+    header("Location: ../views/login.php");
 
     exit();
 } else if ($action == 'login') {
@@ -31,9 +31,8 @@ if ($action == 'logout') {
             $sql = "SELECT * FROM tbuser WHERE username='$uname' AND password='$pass'";
             $result = mysqli_query($konek, $sql);
             if (mysqli_num_rows($result) === 1) {
-                $_SESSION['username'] = $row['username'];
-                $_SESSION['name'] = $row['name'];
-                $_SESSION['id'] = $row['id'];
+                session_start();
+                $_SESSION['username'] = $uname;
 
                 header("Location: ../views/index.php");
                 exit();
