@@ -1,14 +1,13 @@
 .container {
-    background: url('../img/index/background-header.png') no-repeat center;
+    background: url('../img/index/background-header.png') no-repeat center fixed;
     background-size: cover;
     height: 60vh;
-    border-radius: 0 0 100px 0;
+    box-shadow: 0 1px 10px black;
+    /* border-radius: 0 0 100px 0; */
 }
 
 .top-nav {
     display: flex;
-    justify-content: end;
-    align-items: center;
     position: sticky;
     padding: 30px 0;
     color: white;
@@ -22,7 +21,16 @@
     margin-right: 30px;
 }
 
-/* make the searchbar */
+.logo {
+    margin-left: 10%;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.search-bar {
+    margin-left: auto;
+}
+
 .search-bar form input {
     width: 500px;
     border-radius: 50px;
@@ -36,7 +44,7 @@
 .categories {
     width: 80%;
     padding-bottom: 20px;
-    margin: 100px auto 0 auto;
+    margin: 50px auto 0 auto;
 }
 
 .categories .wrapp {
@@ -105,7 +113,7 @@
 
 .content-header {
     width: 80%;
-    margin-top: 30px;
+    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
     z-index: 1;

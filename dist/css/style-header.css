@@ -34,18 +34,6 @@
   display: block;
 }
 
-.logo {
-  text-decoration: none;
-  font-size: 30px;
-  color: orange;
-  font-weight: bold;
-  padding: 30px 15px;
-}
-
-.logo>img {
-  vertical-align: bottom;
-}
-
 .sidebar {
   margin: 0 5px;
   padding: 0 10px;

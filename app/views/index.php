@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="../../dist/css/index.css">
     <div class="container">
       <div id="nav" class="top-nav">
+        <div class="logo">
+          BookHub
+        </div>
         <div class="search-bar">
           <form action="index.php" method="get">
             <!-- <input type="text" name="search" placeholder="Search for books"> -->
