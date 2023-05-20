@@ -29,10 +29,10 @@
             <h2>Login</h2>
 
             <?php if (isset($_GET['error'])) { ?>
-                <p class="error"><?php echo $_GET['error']; ?></p>
+                <p class="error"><?= $_GET['error'] ?></p>
             <?php } ?>
 
-            <form action="loginn.php" method="post">
+            <form action="../actions/action_user.php?action=login" method="post">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Enter your username" required>
 

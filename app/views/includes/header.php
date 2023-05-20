@@ -10,6 +10,9 @@
 </head>
 
 <body>
+    <?php
+    include_once("app/config/init.php");
+    ?>
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="logo"><img src="dist/img/library.png" alt="Logo" width="35"> BookHub</div>

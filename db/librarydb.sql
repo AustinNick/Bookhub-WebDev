@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `buku`
 --
 
-CREATE TABLE `buku` (
+CREATE TABLE `tbbuku` (
   `buku_id` int(11) NOT NULL,
   `judul` varchar(255) DEFAULT NULL,
   `penulis` varchar(255) DEFAULT NULL,
@@ -36,14 +36,14 @@ CREATE TABLE `buku` (
   `jumlah_halaman` int(11) DEFAULT NULL,
   `penerbit` varchar(255) DEFAULT NULL,
   `tahun_terbit` int(11) DEFAULT NULL,
-  `cover` varchar(255) DEFAULT NULL
+  `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `buku`
 --
 
-INSERT INTO `buku` (`buku_id`, `judul`, `penulis`, `kategori`, `sinopsis`, `jumlah_halaman`, `penerbit`, `tahun_terbit`, `cover`) VALUES
+INSERT INTO `tbbuku` (`buku_id`, `judul`, `penulis`, `kategori`, `sinopsis`, `jumlah_halaman`, `penerbit`, `tahun_terbit`, `image`) VALUES
 (3, 'fsdfsdg', 'hansel', 'horror', 'dssdf', 23, 'hansel', 4545, 'sdfsdfs');
 
 -- --------------------------------------------------------
@@ -52,7 +52,7 @@ INSERT INTO `buku` (`buku_id`, `judul`, `penulis`, `kategori`, `sinopsis`, `juml
 -- Table structure for table `favorite`
 --
 
-CREATE TABLE `favorite` (
+CREATE TABLE `tbfavorite` (
   `favorite_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `buku_id` int(11) DEFAULT NULL
@@ -62,7 +62,7 @@ CREATE TABLE `favorite` (
 -- Dumping data for table `favorite`
 --
 
-INSERT INTO `favorite` (`favorite_id`, `user_id`, `buku_id`) VALUES
+INSERT INTO `tbfavorite` (`favorite_id`, `user_id`, `buku_id`) VALUES
 (1, 1, 3);
 
 -- --------------------------------------------------------
@@ -71,7 +71,7 @@ INSERT INTO `favorite` (`favorite_id`, `user_id`, `buku_id`) VALUES
 -- Table structure for table `rating`
 --
 
-CREATE TABLE `rating` (
+CREATE TABLE `tbrating` (
   `rating_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `buku_id` int(11) DEFAULT NULL,
@@ -82,7 +82,7 @@ CREATE TABLE `rating` (
 -- Dumping data for table `rating`
 --
 
-INSERT INTO `rating` (`rating_id`, `user_id`, `buku_id`, `nilai_rating`) VALUES
+INSERT INTO `tbrating` (`rating_id`, `user_id`, `buku_id`, `nilai_rating`) VALUES
 (1, 1, 3, 10);
 
 -- --------------------------------------------------------
@@ -91,9 +91,10 @@ INSERT INTO `rating` (`rating_id`, `user_id`, `buku_id`, `nilai_rating`) VALUES
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE `tbuser` (
   `user_id` int(11) NOT NULL,
   `nama` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -102,8 +103,8 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `nama`, `email`, `password`) VALUES
-(1, 'hansel', 'hansel@gmail.com', 'hansel123\r\n');
+INSERT INTO `tbuser` (`user_id`, `nama`, `username`, `email`, `password`) VALUES
+(1, 'hansel', 'hansel123', 'hansel@gmail.com', 'hansel123\r\n');
 
 --
 -- Indexes for dumped tables
@@ -112,13 +113,13 @@ INSERT INTO `user` (`user_id`, `nama`, `email`, `password`) VALUES
 --
 -- Indexes for table `buku`
 --
-ALTER TABLE `buku`
+ALTER TABLE `tbbuku`
   ADD PRIMARY KEY (`buku_id`);
 
 --
 -- Indexes for table `favorite`
 --
-ALTER TABLE `favorite`
+ALTER TABLE `tbfavorite`
   ADD PRIMARY KEY (`favorite_id`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `buku_id` (`buku_id`);
@@ -126,7 +127,7 @@ ALTER TABLE `favorite`
 --
 -- Indexes for table `rating`
 --
-ALTER TABLE `rating`
+ALTER TABLE `tbrating`
   ADD PRIMARY KEY (`rating_id`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `buku_id` (`buku_id`);
@@ -134,7 +135,7 @@ ALTER TABLE `rating`
 --
 -- Indexes for table `user`
 --
-ALTER TABLE `user`
+ALTER TABLE `tbuser`
   ADD PRIMARY KEY (`user_id`);
 
 --
@@ -144,19 +145,19 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for table `buku`
 --
-ALTER TABLE `buku`
+ALTER TABLE `tbbuku`
   MODIFY `buku_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `favorite`
 --
-ALTER TABLE `favorite`
+ALTER TABLE `tbfavorite`
   MODIFY `favorite_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `rating`
 --
-ALTER TABLE `rating`
+ALTER TABLE `tbrating`
   MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -166,16 +167,16 @@ ALTER TABLE `rating`
 --
 -- Constraints for table `favorite`
 --
-ALTER TABLE `favorite`
-  ADD CONSTRAINT `favorite_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
-  ADD CONSTRAINT `favorite_ibfk_2` FOREIGN KEY (`buku_id`) REFERENCES `buku` (`buku_id`);
+ALTER TABLE `tbfavorite`
+  ADD CONSTRAINT `tbfavorite_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbuser` (`user_id`),
+  ADD CONSTRAINT `tbfavorite_ibfk_2` FOREIGN KEY (`buku_id`) REFERENCES `tbbuku` (`buku_id`);
 
 --
 -- Constraints for table `rating`
 --
-ALTER TABLE `rating`
-  ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
-  ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`buku_id`) REFERENCES `buku` (`buku_id`);
+ALTER TABLE `tbrating`
+  ADD CONSTRAINT `tbrating_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbuser` (`user_id`),
+  ADD CONSTRAINT `tbrating_ibfk_2` FOREIGN KEY (`buku_id`) REFERENCES `tbbuku` (`buku_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
