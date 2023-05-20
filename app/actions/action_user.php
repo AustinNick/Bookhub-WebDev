@@ -33,6 +33,7 @@ if ($action == 'logout') {
             if (mysqli_num_rows($result) === 1) {
                 session_start();
                 $row = mysqli_fetch_assoc($result);
+                $_SESSION['id'] = $row['user_id'];
                 $_SESSION['username'] = $row['username'];
 
                 if ($row['role'] == 'admin') {

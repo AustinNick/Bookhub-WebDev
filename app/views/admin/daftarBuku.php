@@ -84,7 +84,7 @@ function customPageHeader()
 
     // Query to fetch books from the buku table
     $sql = "SELECT * FROM tbbuku";
-    $sql2 = "SELECT * FROM tbbuku LIMIT $halaman_awal, $batas";
+    $sql2 = "SELECT * FROM tbbuku LEFT JOIN tbkategori ON tbbuku.kategori_id = tbkategori.id_kategori LIMIT $halaman_awal, $batas";
     $result = $konek->query($sql);
     $result2 = $konek->query($sql2);
 
@@ -100,7 +100,7 @@ function customPageHeader()
         echo "<td>" . $row["buku_id"] . "</td>";
         echo "<td>" . $row["judul"] . "</td>";
         echo "<td>" . $row["penulis"] . "</td>";
-        echo "<td>" . $row["kategori"] . "</td>";
+        echo "<td>" . $row["nama_kategori"] . "</td>";
         echo "<td>" . $row["sinopsis"] . "</td>";
         echo "<td>" . $row["jumlah_halaman"] . "</td>";
         echo "<td>" . $row["penerbit"] . "</td>";

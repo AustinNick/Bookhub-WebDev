@@ -13,13 +13,13 @@
           BookHub
         </div>
         <div class="search-bar">
-          <form action="index.php" method="get">
-            <!-- <input type="text" name="search" placeholder="Search for books"> -->
-            <span class="search-button"><i class="fa fa-search"></i></span>
-          </form>
+          <!-- <form action="index.php" method="get"> -->
+          <!-- <input type="text" name="search" placeholder="Search for books"> -->
+          <!-- <span class="search-button"><i class="fa fa-search"></i></span> -->
+          <!-- </form> -->
         </div>
         <div>
-          <span class="search-button"><i class="fa fa-heart"></i></span>
+          <a href="favorite.php" class="favorite-nav"><i class="fa fa-heart"></i></a>
         </div>
 
         <div>
@@ -41,21 +41,46 @@
           <?php
           include
             "../config/config.php";
-
-          $query = "SELECT * FROM tbbuku ORDER BY RAND() LIMIT 1";
+          if (isset($_GET["id_buku"])) {
+            $idBuku = $_GET["id_buku"];
+            $query = "SELECT * FROM tbbuku LEFT JOIN tbkategori ON tbbuku.kategori_id = tbkategori.id_kategori WHERE tbbuku.buku_id = '$idBuku'";
+          } else {
+            $query = "SELECT * FROM tbbuku LEFT JOIN tbkategori ON tbbuku.kategori_id = tbkategori.id_kategori ORDER BY RAND() LIMIT 1";
+          }
           $result = mysqli_query($konek, $query);
           $row = mysqli_fetch_assoc($result);
           ?>
-          <p class="genre"><?= $row['kategori'] ?></p>
+          <p class="genre"><?= $row['nama_kategori'] ?></p>
           <p class="judul-buku"><?= $row['judul'] ?></p>
-          <p class="author"><?= $row['penulis'] ?></p>
+          <p class="author">by <?= $row['penulis'] ?></p>
 
           <p class="deskripsi"><?= $row['sinopsis'] ?></p>
 
+          <table class="wrap-detil">
+            <tr>
+              <td>Halaman</td>
+              <td>Tahun Terbit</td>
+              <td>Penerbit</td>
+            </tr>
+
+            <tr>
+              <td><?= $row['jumlah_halaman'] ?></td>
+              <td><?= $row['tahun_terbit'] ?></td>
+              <td><?= $row['penerbit'] ?></td>
+          </table>
+
           <div>
-            <a href="favorite.php?action=add&id=<?= $row['buku_id'] ?>">
-              <button class="button-header"><i class="fa fa-heart"></i> Add to Favorite</button>
-            </a>
+            <?php
+            $query2 = "SELECT * FROM tbfavorite WHERE buku_id = " . $row['buku_id'] . " AND user_id = " . $_SESSION['id'];
+            $result2 = mysqli_query($konek, $query2);
+            if ($result2->num_rows < 1) {
+            ?>
+              <a href="../actions/tambah_favorit.php?id=<?= $row['buku_id'] ?>">
+                <button class="button-header"><i class="fa fa-heart"></i> Add to Favorite</button>
+              </a>
+            <?php } else { ?>
+              <button class="button-header favorited"><i class="fa fa-heart"></i> Favorited!</button>
+            <?php } ?>
           </div>
         </div>
         <div class="image">
@@ -68,7 +93,6 @@
     <div class="categories">
       <div class="top-text-div">
         <p class="text-div">Kategori</p>
-        <a href=""><i class="fa fa-plus"></i> View All</a>
       </div>
 
       <div class="wrapp">
@@ -76,17 +100,15 @@
           <button id="slideLeft"><i class="fa fa-arrow-left"></i></button>
         </div>
         <div id="categories" class="categories-place">
-          <div>Sci-fi</div>
-          <div>Horror</div>
-          <div>Comedy</div>
-          <div>Thriller</div>
-          <div>Adventure</div>
-          <div>Biography</div>
-          <div>History</div>
-          <div>Science</div>
-          <div>Science</div>
-          <div>Science</div>
-          <div>Science</div>
+          <?php
+          $sql = "SELECT * FROM tbkategori";
+          $result = mysqli_query($konek, $sql);
+          while ($row = mysqli_fetch_array($result)) {
+          ?>
+            <a href="kategori_khusus.php?kategori=<?= $row["nama_kategori"] ?>">
+              <div><?= $row["nama_kategori"] ?></div>
+            </a>
+          <?php } ?>
         </div>
         <div>
           <button id="slideRight"> <i class="fa fa-arrow-right"></i> </button>
@@ -97,18 +119,30 @@
     <div class="new-release">
       <div class="top-text-div">
         <p class="text-div">New Release</p>
-        <a href=""><i class="fa fa-plus"></i> View All</a>
+        <a href="new_release.php"><i class="fa fa-plus"></i> View All</a>
       </div>
       <div class="new-release-book-wrap">
         <?php
-        $sql = "SELECT * FROM tbbuku ORDER BY tahun_terbit DESC LIMIT 6";
+        $sql = "SELECT * FROM tbbuku LEFT JOIN tbkategori ON tbbuku.kategori_id = tbkategori.id_kategori ORDER BY tahun_terbit DESC LIMIT 6";
         $result = mysqli_query($konek, $sql);
         while ($row = mysqli_fetch_array($result)) {
         ?>
           <div class="book">
+            <?php
+            if (isset($_SESSION['username'])) {
+              $id = $_SESSION['id'];
+              $id_buku = $row['buku_id'];
+              $sql = "SELECT * FROM tbfavorite WHERE user_id = '$id' AND buku_id = '$id_buku'";
+              $result2 = mysqli_query($konek, $sql);
+              $row2 = mysqli_fetch_array($result2);
+              if ($row2 > 0) {
+            ?>
+                <span class="favorite-mark"><i class="fa fa-heart"></i> Favorited!</span>
+            <?php }
+            } ?>
             <img src="../../dist/img/book/<?= $row['image'] ?>" alt="">
-            <p class="judul-book"><?= $row['judul'] ?></p>
-            <p class="genre-book"><?= $row['kategori'] ?></p>
+            <p class="judul-book"><a href="?id_buku=<?= $row['buku_id'] ?>"><?= $row['judul'] ?></a></p>
+            <p class="genre-book"><?= $row['nama_kategori'] ?></p>
           </div>
         <?php } ?>
       </div>
@@ -136,14 +170,12 @@
           document.getElementById("nav").style.background = "white";
           document.getElementById("nav").style.color = "black";
           document.getElementById("nav").style.transform = "translateY(0px)";
-          // document.getElementById("nav").style.padding = "30px 0";
-          // document.getElementById("logo").style.fontSize = "25px";
+          document.getElementById("nav").style.boxShadow = "0 1px 10px black";
         } else {
           document.getElementById("nav").style.background = "transparent";
           document.getElementById("nav").style.color = "white";
           document.getElementById("nav").style.transform = "translateY(-10px)";
-          // document.getElementById("nav").style.padding = "40px 0";
-          // document.getElementById("logo").style.fontSize = "35px";
+          document.getElementById("nav").style.boxShadow = "none";
         }
       }
     </script>

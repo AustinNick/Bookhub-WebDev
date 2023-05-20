@@ -61,9 +61,7 @@
     ?>
 
     <header class="header">
-
         <h1><a href="index.php" class="admin">Admin</a></h1>
-
         <div>
             <span class="header__admin-name"><?= $_SESSION['username'] ?></span>
             <a href="../../actions/action_user.php?action=logout"><button class="header__logout-button">Logout</button></a>
@@ -74,9 +72,8 @@
         <ul>
             <li><a href="user.php" <?= ($PageTitle == "Table User") ? "class='active'" : '' ?>>User</a></li>
             <li><a href="buku.php" <?= ($PageTitle == "Buku") ? "class='active'" : '' ?>>Buku</a></li>
+            <li><a href="kategori.php" <?= ($PageTitle == "Table Kategori") ? "class='active'" : '' ?>>Kategori</a></li>
             <li><a href="daftarBuku.php" <?= ($PageTitle == "Table Buku") ? "class='active'" : '' ?>>Daftar Buku</a></li>
-            <li><a href="rating.php" <?= ($PageTitle == "Table Rating") ? "class='active'" : '' ?>>Rating</a></li>
-            <li><a href="favorite.php" <?= ($PageTitle == "Table Favorit") ? "class='active'" : '' ?>>Favorite</a></li>
         </ul>
     </nav>
 

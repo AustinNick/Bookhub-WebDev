@@ -23,8 +23,8 @@ function customPageHeader()
     }
 
     .container {
-      width: 300px;
-      margin-left: 700px;
+      width: 50%;
+      margin: 0 auto;
       padding: 20px;
       background-color: #fff;
       border: 1px solid #ccc;
@@ -43,11 +43,16 @@ function customPageHeader()
     .button {
       margin-top: 10px;
       display: block;
+      width: 100%;
+      cursor: pointer;
       background-color: lightgreen;
       color: black;
-      padding: 5px 10px;
+      padding: 10px 20px;
+      font-size: 20px;
       border: none;
-      border-radius: 3px;
+      border-radius: 5px;
+      transition: 0.2s ease;
+
     }
 
     .button:hover {
@@ -60,11 +65,19 @@ function customPageHeader()
       padding: 30px;
       font-size: 30px;
     }
+
+    form input,
+    form textarea,
+    form select {
+      width: 100%;
+      padding: 7px 20px;
+      border: 1px solid grey;
+      border-radius: 10px;
+    }
   </style>
   <?php
   // Database connection details
   include_once("../../config/config.php");
-
 
   // Check if the form was submitted
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -76,33 +89,25 @@ function customPageHeader()
     $jumlah_halaman = $_POST['jumlah_halaman'];
     $penerbit = $_POST['penerbit'];
     $tahun_terbit = $_POST['tahun_terbit'];
-    $cover = $_POST['cover'];
+    $image = $_FILES['image']['name'];
 
     // Prepare and execute the SQL statement
-    $sql = "INSERT INTO buku (judul, penulis, kategori, sinopsis, jumlah_halaman, penerbit, tahun_terbit, cover)
-                VALUES (:judul, :penulis, :kategori, :sinopsis, :jumlah_halaman, :penerbit, :tahun_terbit, :cover)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':judul', $judul);
-    $stmt->bindParam(':penulis', $penulis);
-    $stmt->bindParam(':kategori', $kategori);
-    $stmt->bindParam(':sinopsis', $sinopsis);
-    $stmt->bindParam(':jumlah_halaman', $jumlah_halaman);
-    $stmt->bindParam(':penerbit', $penerbit);
-    $stmt->bindParam(':tahun_terbit', $tahun_terbit);
-    $stmt->bindParam(':cover', $cover);
+    $sql = "INSERT INTO tbbuku (judul, penulis, kategori_id, sinopsis, jumlah_halaman, penerbit, tahun_terbit, image)
+                VALUES ('$judul', '$penulis', '$kategori', '$sinopsis', '$jumlah_halaman', '$penerbit', '$tahun_terbit', '$image')";
 
-    if ($stmt->execute()) {
-      // Data inserted successfully
-      echo "Data inserted successfully.";
+    $result = mysqli_query($konek, $sql);
+
+    move_uploaded_file($_FILES['image']['tmp_name'], "../../../dist/img/book/" . $_FILES['image']['name']);
+    if ($result) {
+      echo "<script>alert('Data berhasil ditambahkan!'); window.location.href='daftarBuku.php';</script>";
     } else {
-      // Error occurred
-      echo "Error: " . $stmt->errorInfo()[2];
+      echo "<script>alert('Data gagal ditambahkan');</script>";
     }
   }
   ?>
   <div class="container">
     <h2>Add Book</h2>
-    <form method="POST" action="">
+    <form method="POST" action="" enctype="multipart/form-data">
       <label for="judul">Judul:</label>
       <input type="text" name="judul" id="judul" required>
 
@@ -110,7 +115,17 @@ function customPageHeader()
       <input type="text" name="penulis" id="penulis" required>
 
       <label for="kategori">Kategori:</label>
-      <input type="text" name="kategori" id="kategori" required>
+      <select name="kategori" id="kategori" required>
+        <?php
+        // Fetch all row = mysqli_fetch_array($re)
+        $sql = "SELECT * FROM tbkategori";
+        $result = mysqli_query($konek, $sql);
+
+        while ($row = mysqli_fetch_array($result)) {
+          echo "<option value='" . $row['id_kategori'] . "'>" . $row['nama_kategori'] . "</option>";
+        }
+        ?>
+      </select>
 
       <label for="sinopsis">Sinopsis:</label>
       <textarea name="sinopsis" id="sinopsis" required></textarea>
@@ -124,8 +139,8 @@ function customPageHeader()
       <label for="tahun_terbit">Tahun Terbit:</label>
       <input type="number" name="tahun_terbit" id="tahun_terbit" required>
 
-      <label for="cover">Cover:</label>
-      <input type="text" name="cover" id="cover" required>
+      <label for="image">Image:</label>
+      <input type="file" name="image" id="image" required>
 
       <input type="submit" value="Submit" class="button">
 
