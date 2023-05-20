@@ -102,7 +102,7 @@
     color: white;
     cursor: pointer;
     display: inline-block;
-    background: url('../img/index/background-header.jpg') no-repeat center fixed;
+    background: url('../img/index/bg-category.jpg') no-repeat top fixed;
     border-radius: 10px;
     border: none;
 }
@@ -244,6 +244,8 @@
 .book img {
     width: 100%;
     border-radius: 10px;
+    object-fit: cover;
+    height: 303px;
 }
 
 .footer {

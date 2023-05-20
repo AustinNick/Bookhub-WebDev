@@ -6,48 +6,51 @@ function customPageHeader()
 {
 ?>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-    }
+        /* style.css */
+        table {
+        border-collapse: collapse;
+        margin-left: 50px;
+        }
 
-    .pagination {
-      text-align: center;
-      margin-top: 10px;
-    }
+        th, td {
+        border: 1px solid #000;
+        padding: 8px 8px;
+        }
 
-    .pagination a {
-      padding: 3px 8px;
-      border: 1px solid #000;
-      text-decoration: none;
-      margin-bottom: 30px;
-      color: black;
-    }
+        a{
+        text-decoration: none;
+        }
 
-    .pagination a.active {
-      background-color: #4CAF50;
-      color: white;
-    }
+        .update-button, .delete-button {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: gray;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        transition: box-shadow 0.3s ease;
+        }
 
-    .pagination a:hover:not(.active) {
-      background-color: #ddd;
-    }
+        .update-button:hover,
+        .delete-button:hover{
+          box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .update-button{
+          background-color: yellow;
+          color: black;
+        }
 
-    .pagination a:first-child {
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
-    }
+        .delete-button{
+          background-color: red;
+          color: white;
+        }
 
-    .pagination a:last-child {
-      border-top-right-radius: 5px;
-      border-bottom-right-radius: 5px;
-    }
-
-    .pagination a.active {
-      background-color: #4CAF50;
-      color: white;
-      border: 1px solid #4CAF50;
-    }
+        .content {
+          margin: 50px 0 0 350px;
+          padding: 20px;
+          font-size: 15px
+        }
   </style>
   <table>
     <tr>
