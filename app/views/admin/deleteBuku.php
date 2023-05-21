@@ -9,7 +9,6 @@ function customPageHeader()
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin-top: 50px;
         }
 
         .message {
@@ -18,7 +17,7 @@ function customPageHeader()
             border: 1px solid #ccc;
             border-radius: 4px;
             max-width: 400px;
-            margin: 0 auto;
+            margin: 10% auto;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 

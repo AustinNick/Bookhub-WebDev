@@ -1,12 +1,10 @@
 <?php
-session_start();
-
 $PageTitle = "Table Rating";
 include_once("template.php");
 
 function customPageHeader()
 {
-    include_once("config/config.php");
+    include_once("../../config/config.php");
 
     // Function to handle the delete action
     function deleteUser($userId)
@@ -41,67 +39,55 @@ function customPageHeader()
             $cancelUrl = $_SESSION['user.php'];
 ?>
 
-            <!DOCTYPE html>
-            <html lang="en">
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    text-align: center;
+                }
 
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Delete User</title>
-                <style>
-                    body {
-                        font-family: Arial, sans-serif;
-                        text-align: center;
-                        margin-top: 50px;
-                    }
+                .message {
+                    padding: 20px;
+                    background-color: #f8f8f8;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    max-width: 400px;
+                    margin: 10% auto;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
 
-                    .message {
-                        padding: 20px;
-                        background-color: #f8f8f8;
-                        border: 1px solid #ccc;
-                        border-radius: 4px;
-                        max-width: 400px;
-                        margin: 0 auto;
-                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                    }
+                .message h2 {
+                    margin-top: 0;
+                }
 
-                    .message h2 {
-                        margin-top: 0;
-                    }
+                .message p {
+                    margin-bottom: 20px;
+                }
 
-                    .message p {
-                        margin-bottom: 20px;
-                    }
+                .button {
+                    display: inline-block;
+                    padding: 10px 20px;
+                    font-size: 16px;
+                    background-color: #4CAF50;
+                    color: #fff;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    text-decoration: none;
+                    margin-right: 10px;
+                }
 
-                    .button {
-                        display: inline-block;
-                        padding: 10px 20px;
-                        font-size: 16px;
-                        background-color: #4CAF50;
-                        color: #fff;
-                        border: none;
-                        border-radius: 4px;
-                        cursor: pointer;
-                        text-decoration: none;
-                        margin-right: 10px;
-                    }
+                .button.cancel {
+                    background-color: #ccc;
+                }
+            </style>
 
-                    .button.cancel {
-                        background-color: #ccc;
-                    }
-                </style>
-            </head>
+            <div class="message">
+                <h2>Delete User</h2>
+                <p><?= $message ?></p>
+                <a class="button" href="<?= $confirmUrl ?>">Yes</a>
+                <a class="button cancel" href="<?= $cancelUrl ?>">No</a>
+            </div>
 
-            <body>
-                <div class="message">
-                    <h2>Delete User</h2>
-                    <p><?= $message ?></p>
-                    <a class="button" href="<?= $confirmUrl ?>">Yes</a>
-                    <a class="button cancel" href="<?= $cancelUrl ?>">No</a>
-                </div>
-            </body>
-
-            </html>
 
 <?php
         }
