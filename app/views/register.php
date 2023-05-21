@@ -24,11 +24,11 @@
 <body>
     <div class="form-container">
         <div class="image">
-        <img src="../../dist/img/index.jpg">
+            <img src="../../dist/img/index.jpg">
         </div>
         <div class="form">
             <h2>Register</h2>
-            <form method="post">
+            <form method="post" action="../actions/action_user.php?action=register">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Enter your username" required>
 

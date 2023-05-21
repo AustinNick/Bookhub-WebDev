@@ -64,13 +64,33 @@ if ($action == 'logout') {
         if ($password != $confirm_password) {
             echo "Konfirmasi password tidak sesuai";
         } else {
-            // Menyimpan data ke dalam tabel pelanggan
-            $sql = "INSERT INTO register (username, email, password, confirm_password) VALUES ('$username', '$email', '$password',
-        '$confirm_password')";
-            if (mysqli_query($konek, $sql)) {
-                echo "Registrasi berhasil";
+            $sql = "SELECT * FROM tbuser WHERE email='$email'";
+            $result = mysqli_query($konek, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                echo "Email sudah terdaftar";
             } else {
-                echo "Error: " . $sql . "<br>" . mysqli_error($konek);
+                $sql = "SELECT * FROM tbuser WHERE username='$username'";
+                $result = mysqli_query($konek, $sql);
+                if (mysqli_num_rows($result) > 0) {
+                    echo "Username sudah terdaftar";
+                } else {
+                    // Menambah user_id yang ada di database
+                    $sql = "SELECT * FROM tbuser ORDER BY user_id DESC LIMIT 1";
+                    $result = mysqli_query($konek, $sql);
+                    $row = mysqli_fetch_assoc($result);
+                    $userId = $row['user_id'] + 1;
+                    // Menyimpan data ke database
+                    $sql = "INSERT INTO tbuser (user_id, username, email, password) VALUES ('$userId','$username', '$email', '$password')";
+                    if (mysqli_query($konek, $sql)) {
+                        echo "Registrasi berhasil";
+                        session_start();
+                        $_SESSION['id'] = $userId;
+                        $_SESSION['username'] = $username;
+                        header("Location: ../views/index.php");
+                    } else {
+                        echo "Error: " . $sql . "<br>" . mysqli_error($konek);
+                    }
+                }
             }
         }
     }
