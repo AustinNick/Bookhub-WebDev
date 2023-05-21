@@ -12,7 +12,7 @@
             margin-top: 50px;
             background-color: #f9f9f9;
             width: 50%;
-            margin: 50px  auto;
+            margin: 50px auto;
         }
 
         .container {
@@ -77,32 +77,7 @@
     <?php
     session_start();
 
-    $host = 'localhost';  // Replace with your database host
-    $db = 'librarydb';   // Replace with your database name
-    $user = 'root';  // Replace with your database username
-    $password = '';  // Replace with your database password
-
-    // Create a database connection
-    $conn = new mysqli($host, $user, $password, $db);
-
-    // Check the connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Function to handle the update action
-    function updateBuku($bukuId, $judul, $penulis, $kategori, $sinopsis, $jumlahHalaman, $penerbit, $tahunTerbit, $cover)
-    {
-        global $conn;
-        $sql = "UPDATE buku SET judul = '$judul', penulis = '$penulis', kategori = '$kategori', sinopsis = '$sinopsis', jumlah_halaman = $jumlahHalaman, penerbit = '$penerbit', tahun_terbit = $tahunTerbit, cover = '$cover' WHERE buku_id = $bukuId";
-        if ($conn->query($sql) === TRUE) {
-            $message = "Book with ID $bukuId has been updated successfully.";
-            echo "<div class='alert alert-success'>$message</div>";
-        } else {
-            $errorMessage = "Error updating book: " . $conn->error;
-            echo "<div class='alert alert-error'>$errorMessage</div>";
-        }
-    }
+    include_once("../../config/config.php");
 
     // Check if the bukuId parameter is provided in the URL
     if (isset($_GET['bukuId'])) {
@@ -118,44 +93,71 @@
             $jumlahHalaman = $_POST['jumlah_halaman'];
             $penerbit = $_POST['penerbit'];
             $tahunTerbit = $_POST['tahun_terbit'];
-            $cover = $_POST['cover'];
+            $image = $_FILES['image']['name'];
+            $judul = str_replace("'", "''", $judul);
 
             // Update the book
-            updateBuku($bukuId, $judul, $penulis, $kategori, $sinopsis, $jumlahHalaman, $penerbit, $tahunTerbit, $cover);
+            if ($image != "") {
+                move_uploaded_file($_FILES['image']['tmp_name'], "../../../dist/img/book/" . $_FILES['image']['name']);
+            } else {
+                $image = $_POST['old_image'];
+            }
+            $sql = `UPDATE tbbuku SET judul = '$judul', penulis = '$penulis', kategori_id = '$kategori', sinopsis = '$sinopsis', jumlah_halaman = $jumlahHalaman, penerbit = '$penerbit', tahun_terbit = $tahunTerbit, image = '$image' WHERE buku_id = $bukuId`;
+
+            if ($konek->query($sql)) {
+                $message = "Book with ID $bukuId has been updated successfully.";
+                echo "<div class='alert alert-success'>$message</div>";
+                header("Location: daftarBuku.php");
+            } else {
+                $errorMessage = "Error updating book: " . $konek->error;
+                echo "<div class='alert alert-error'>$errorMessage</div>";
+            }
 
             // Redirect back to the previous page if available, otherwise redirect to index.php
-            $previousPage = $_SESSION['previous_page'] ?? 'daftarBuku.php';
-            header("Location: $previousPage");
             exit();
         } else {
             // Retrieve the book details from the database
-            $sql = "SELECT * FROM buku WHERE buku_id = $bukuId";
-            $result = $conn->query($sql);
+            $sql = "SELECT * FROM tbbuku RIGHT JOIN tbkategori ON tbbuku.kategori_id = tbkategori.id_kategori WHERE buku_id = $bukuId";
+            $result = $konek->query($sql);
 
             // Check if the book exists
             if ($result->num_rows === 1) {
                 $row = $result->fetch_assoc();
                 $judul = $row['judul'];
                 $penulis = $row['penulis'];
-                $kategori = $row['kategori'];
+                $kategori = $row['nama_kategori'];
                 $sinopsis = $row['sinopsis'];
                 $jumlahHalaman = $row['jumlah_halaman'];
                 $penerbit = $row['penerbit'];
                 $tahunTerbit = $row['tahun_terbit'];
-                $cover = $row['cover'];
+                $image = $row['image'];
 
                 // Store the previous page URL in a session variable
                 $_SESSION['previous_page'] = $_SERVER['HTTP_REFERER'];
 
                 // Display the update form
-                ?>
-                <form method="post">
+    ?>
+                <form method="post" enctype="multipart/form-data">
                     <label for="judul">Judul:</label>
                     <input type="text" class="form-input" id="judul" name="judul" value="<?php echo $judul; ?>" placeholder="Judul" required><br>
                     <label for="penulis">Penulis:</label>
                     <input type="text" class="form-input" id="penulis" name="penulis" value="<?php echo $penulis; ?>" placeholder="Penulis" required><br>
                     <label for="kategori">Kategori:</label>
-                    <input type="text" class="form-input" id="kategori" name="kategori" value="<?php echo $kategori; ?>" placeholder="Kategori" required><br>
+                    <select name="kategori" id="" class="form-input">
+                        <?php
+                        $sql = "SELECT * FROM tbkategori";
+                        $result = $konek->query($sql);
+                        while ($row = $result->fetch_assoc()) {
+                            $id = $row['id_kategori'];
+                            $nama = $row['nama_kategori'];
+                            if ($kategori == $nama) {
+                                echo "<option value='$id' selected>$nama</option>";
+                            } else {
+                                echo "<option value='$id'>$nama</option>";
+                            }
+                        }
+                        ?>
+                    </select>
                     <label for="sinopsis">Sinopsis:</label>
                     <textarea class="form-input" id="sinopsis" name="sinopsis" placeholder="Sinopsis" required><?php echo $sinopsis; ?></textarea><br>
                     <label for="jumlah_halaman">Jumlah Halaman:</label>
@@ -164,20 +166,19 @@
                     <input type="text" class="form-input" id="penerbit" name="penerbit" value="<?php echo $penerbit; ?>" placeholder="Penerbit" required><br>
                     <label for="tahun_terbit">Tahun Terbit:</label>
                     <input type="number" class="form-input" id="tahun_terbit" name="tahun_terbit" value="<?php echo $tahunTerbit; ?>" placeholder="Tahun Terbit" required><br>
-                    <label for="cover">Cover:</label>
-                    <input type="text" class="form-input" id="cover" name="cover" value="<?php echo $cover; ?>" placeholder="Cover" required><br>
+                    <label for="cover">Image:</label>
+                    <input type="file" name="image" class="form-input">
+                    <img src="../../../dist/img/book/<?= $image ?>" alt="" width="150">
+                    <input type="hidden" class="form-input" id="image" name="old_image" value="<?php echo $image; ?>" placeholder="Cover" required><br>
                     <input type="submit" class="form-button" value="Update">
                 </form>
-                <?php
-            } else {
-                $errorMessage = "Book not found.";
-                echo "<div class='alert alert-error'>$errorMessage</div>";
+    <?php
             }
         }
     }
 
     // Close the database connection
-    $conn->close();
+    $konek->close();
     ?>
 </body>
 

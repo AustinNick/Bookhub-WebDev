@@ -59,22 +59,14 @@ function customPageHeader()
     <?php
     include_once("../../config/config.php");
 
-    // Function to handle the delete action
-    function deleteBuku($bukuId)
-    {
-        global $konek;
-        $sql = "DELETE FROM tbbuku WHERE buku_id = $bukuId";
-        $result = $konek->query($sql);
-        return $result->num_rows == 1;
-    }
-
     // Check if the bukuId parameter is provided in the URL
     if (isset($_GET['bukuId'])) {
         $bukuId = $_GET['bukuId'];
 
         // Check if the user confirmed the deletion
         if (isset($_GET['confirm']) && $_GET['confirm'] === 'yes') {
-            $result = deleteBuku($bukuId);
+            $sql = "DELETE FROM tbbuku WHERE buku_id = '$bukuId'";
+            $result = $konek->query($sql);
 
             if ($result) {
                 $message = "Book with ID $bukuId has been deleted successfully.";
@@ -83,8 +75,7 @@ function customPageHeader()
             }
 
             // Redirect back to the previous page if available, otherwise redirect to index.php
-            $previousPage = $_SESSION['previous_page'] ?? 'index.php';
-            header("Location: $previousPage?message=" . urlencode($message));
+            header("Location: daftarBuku.php");
             exit();
         } else {
             // Store the previous page URL in a session variable
