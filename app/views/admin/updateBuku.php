@@ -102,7 +102,7 @@
             } else {
                 $image = $_POST['old_image'];
             }
-            $sql = `UPDATE tbbuku SET judul = '$judul', penulis = '$penulis', kategori_id = '$kategori', sinopsis = '$sinopsis', jumlah_halaman = $jumlahHalaman, penerbit = '$penerbit', tahun_terbit = $tahunTerbit, image = '$image' WHERE buku_id = $bukuId`;
+            $sql = "UPDATE tbbuku SET judul = '$judul', penulis = '$penulis', kategori_id = '$kategori', sinopsis = '$sinopsis', jumlah_halaman = $jumlahHalaman, penerbit = '$penerbit', tahun_terbit = $tahunTerbit, image = '$image' WHERE buku_id = $bukuId";
 
             if ($konek->query($sql)) {
                 $message = "Book with ID $bukuId has been updated successfully.";

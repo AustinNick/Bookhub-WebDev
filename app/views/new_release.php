@@ -19,7 +19,7 @@ function customPageHeader()
                 <!-- </form> -->
             </div>
             <div>
-                <a href="favorite.php" class="favorite-nav"><i class="fa fa-heart"></i></a>
+                <a href="favorite.php" id="hert"><i class="fa fa-heart"></i></a>
             </div>
 
             <div>
@@ -96,7 +96,7 @@ function customPageHeader()
         </div>
         <div class="new-release-book-wrap">
             <?php
-            $sql = "SELECT * FROM tbbuku RIGHT JOIN tbkategori ON tbbuku.kategori_id = tbkategori.id_kategori ORDER BY tahun_terbit DESC";
+            $sql = "SELECT * FROM tbbuku LEFT JOIN tbkategori ON tbbuku.kategori_id = tbkategori.id_kategori ORDER BY tahun_terbit DESC";
             $result = mysqli_query($konek, $sql);
             while ($row = mysqli_fetch_array($result)) {
             ?>
@@ -131,10 +131,12 @@ function customPageHeader()
             if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
                 document.getElementById("nav").style.background = "white";
                 document.getElementById("nav").style.color = "black";
+                document.getElementById("hert").style.color = "black";
                 document.getElementById("nav").style.transform = "translateY(0px)";
                 document.getElementById("nav").style.boxShadow = "0 1px 10px black";
             } else {
                 document.getElementById("nav").style.background = "transparent";
+                document.getElementById("hert").style.color = "white";
                 document.getElementById("nav").style.color = "white";
                 document.getElementById("nav").style.transform = "translateY(-10px)";
                 document.getElementById("nav").style.boxShadow = "none";
