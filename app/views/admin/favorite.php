@@ -5,7 +5,7 @@ include_once("template.php");
 function customPageHeader()
 {
 ?>
-  
+
   <link rel="stylesheet" href="../../../dist/css/style-admin.css">
   <table>
     <tr>
@@ -16,7 +16,7 @@ function customPageHeader()
 
     <?php
     // Database connection settings
-    include_once("../../config/config.php");
+    include_once("config/config.php");
 
     // Query to fetch data from the Favorite table
     $sql = "SELECT * FROM tbfavorite";

@@ -17,7 +17,7 @@ function customPageHeader()
         </tr>
         <?php
         // Database connection settings
-        include_once("../../config/config.php");
+        include_once("config/config.php");
 
         // Query to fetch data from the Rating table
         $sql = "SELECT * FROM tbkategori";

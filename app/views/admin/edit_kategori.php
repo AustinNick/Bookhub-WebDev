@@ -5,7 +5,7 @@ include_once("template.php");
 function customPageHeader()
 {
     $id = $_GET["id"];
-    include_once("../../config/config.php");
+    include_once("config/config.php");
     $sql = "SELECT * FROM tbkategori WHERE id_kategori = $id";
     $result = $konek->query($sql);
     $row = mysqli_fetch_assoc($result);

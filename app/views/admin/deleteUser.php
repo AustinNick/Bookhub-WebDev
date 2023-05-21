@@ -6,7 +6,7 @@ include_once("template.php");
 
 function customPageHeader()
 {
-    include_once("../../config/config.php");
+    include_once("config/config.php");
 
     // Function to handle the delete action
     function deleteUser($userId)

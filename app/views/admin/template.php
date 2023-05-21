@@ -64,7 +64,7 @@
         <h1><a href="index.php" class="admin">Admin</a></h1>
         <div>
             <span class="header__admin-name"><?= $_SESSION['username'] ?></span>
-            <a href="../../actions/action_user.php?action=logout"><button class="header__logout-button">Logout</button></a>
+            <a href="actions/action_user.php?action=logout"><button class="header__logout-button">Logout</button></a>
         </div>
     </header>
 

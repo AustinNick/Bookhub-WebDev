@@ -6,7 +6,7 @@ function customPageHeader()
 {
 ?>
   <?php
-  include_once("../../config/config.php");
+  include_once("config/config.php");
 
   // Query to fetch users from the register table
   $sql = "SELECT * FROM tbuser";
