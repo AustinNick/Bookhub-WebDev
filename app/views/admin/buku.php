@@ -77,7 +77,7 @@ function customPageHeader()
   </style>
   <?php
   // Database connection details
-  include_once("config/config.php");
+  include_once("../../config/config.php");
 
   // Check if the form was submitted
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {

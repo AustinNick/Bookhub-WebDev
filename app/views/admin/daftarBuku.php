@@ -73,7 +73,7 @@ function customPageHeader()
     </tr>
     <?php
     // Database connection settings
-    include_once("config/config.php");
+    include_once("../../config/config.php");
 
     $batas = 5;
     $halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;

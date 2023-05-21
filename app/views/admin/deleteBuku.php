@@ -1,7 +1,5 @@
 <?php
-session_start();
-
-$PageTitle = "Table Rating";
+$PageTitle = "Delete Buku";
 include_once("template.php");
 
 function customPageHeader()
@@ -59,18 +57,15 @@ function customPageHeader()
     </style>
 
     <?php
-    include_once("config/config.php");
+    include_once("../../config/config.php");
 
     // Function to handle the delete action
     function deleteBuku($bukuId)
     {
         global $konek;
-        $sql = "DELETE FROM buku WHERE buku_id = $bukuId";
-        if ($konek->query($sql) === TRUE) {
-            return true;
-        } else {
-            return false;
-        }
+        $sql = "DELETE FROM tbbuku WHERE buku_id = $bukuId";
+        $result = $konek->query($sql);
+        return $result->num_rows == 1;
     }
 
     // Check if the bukuId parameter is provided in the URL
