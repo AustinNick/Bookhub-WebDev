@@ -1,5 +1,5 @@
 <?php
-include_once("config/config.php");
+include_once("../../config/config.php");
 $action = isset($_GET['action']) ? $_GET['action'] : "";
 $id = $_GET["id"];
 
