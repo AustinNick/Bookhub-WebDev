@@ -16,8 +16,8 @@ Project ini dibuat menggunakan HTML, dan CSS untuk front-end, PHP untuk back-end
 2. Import database `bookhub.sql` ke dalam MySQL.
 3. Buka XAMPP dan jalankan Apache dan MySQL.
 4. Buka browser dan ketik `localhost/Bookhub-Project-WebDev` pada URL.
-5. Login dengan username `admin` dan password `admin` untuk masuk ke halaman admin.
-6. Login dengan username `user` dan password `user` untuk masuk ke halaman user.
+5. Login dengan username `admin` dan password `admin` untuk masuk ke halaman admin. (Anda bisa membuat sendiri dengan masuk ke MySQL dan membuat user baru dengan role *`admin`*)
+6. Login dengan username `user` dan password `user` untuk masuk ke halaman user. (Anda bisa membuat sendiri dengan masuk ke halaman register)
 7. Selamat mencoba!
 
 ---
