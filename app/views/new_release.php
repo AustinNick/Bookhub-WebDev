@@ -38,55 +38,60 @@ function customPageHeader()
         <a href="index.php" class="back"><i class="fa fa-arrow-left"></i> Back</a>
 
         <div class="content-header">
-            <div class="penjelasan-buku">
-                <?php
-                include
-                    "../config/config.php";
-                if (isset($_GET["id_buku"])) {
-                    $idBuku = $_GET["id_buku"];
-                    $query = "SELECT * FROM tbbuku LEFT JOIN tbkategori ON tbbuku.kategori_id = tbkategori.id_kategori WHERE tbbuku.buku_id = '$idBuku'";
-                } else {
-                    $query = "SELECT * FROM tbbuku LEFT JOIN tbkategori ON tbbuku.kategori_id = tbkategori.id_kategori ORDER BY RAND() LIMIT 1";
-                }
-                $result = mysqli_query($konek, $query);
+            <?php
+            include
+                "../config/config.php";
+            if (isset($_GET["id_buku"])) {
+                $idBuku = $_GET["id_buku"];
+                $query = "SELECT * FROM tbbuku LEFT JOIN tbkategori ON tbbuku.kategori_id = tbkategori.id_kategori WHERE tbbuku.buku_id = '$idBuku'";
+            } else {
+                $query = "SELECT * FROM tbbuku LEFT JOIN tbkategori ON tbbuku.kategori_id = tbkategori.id_kategori ORDER BY RAND() LIMIT 1";
+            }
+            $result = mysqli_query($konek, $query);
+            if ($result->num_rows < 1) {
+                echo "<div class='nulldata'><h1>No books yet!</h1></div>";
+            } else {
                 $row = mysqli_fetch_assoc($result);
-                ?>
-                <p class="genre"><?= $row['nama_kategori'] ?></p>
-                <p class="judul-buku"><?= $row['judul'] ?></p>
-                <p class="author">by <?= $row['penulis'] ?></p>
+            ?>
+                <div class="penjelasan-buku">
+                    <p class="genre"><?= $row['nama_kategori'] ?></p>
+                    <p class="judul-buku"><?= $row['judul'] ?></p>
+                    <p class="author">by <?= $row['penulis'] ?></p>
+                    <p class="deskripsi"><?= $row['sinopsis'] ?></p>
 
-                <p class="deskripsi"><?= $row['sinopsis'] ?></p>
+                    <table class="wrap-detil">
+                        <tr>
+                            <td>Halaman</td>
+                            <td>Tahun Terbit</td>
+                            <td>Penerbit</td>
+                        </tr>
 
-                <table class="wrap-detil">
-                    <tr>
-                        <td>Halaman</td>
-                        <td>Tahun Terbit</td>
-                        <td>Penerbit</td>
-                    </tr>
+                        <tr>
+                            <td><?= $row['jumlah_halaman'] ?></td>
+                            <td><?= $row['tahun_terbit'] ?></td>
+                            <td><?= $row['penerbit'] ?></td>
+                    </table>
 
-                    <tr>
-                        <td><?= $row['jumlah_halaman'] ?></td>
-                        <td><?= $row['tahun_terbit'] ?></td>
-                        <td><?= $row['penerbit'] ?></td>
-                </table>
-
-                <div>
-                    <?php
-                    $query2 = "SELECT * FROM tbfavorite WHERE buku_id = " . $row['buku_id'] . " AND user_id = " . $_SESSION['id'];
-                    $result2 = mysqli_query($konek, $query2);
-                    if ($result2->num_rows < 1) {
-                    ?>
-                        <a href="../actions/tambah_favorit.php?id=<?= $row['buku_id'] ?>">
-                            <button class="button-header"><i class="fa fa-heart"></i> Add to Favorite</button>
-                        </a>
-                    <?php } else { ?>
-                        <button class="button-header favorited"><i class="fa fa-heart"></i> Favorited!</button>
-                    <?php } ?>
+                    <div>
+                        <?php
+                        $query2 = "SELECT * FROM tbfavorite WHERE buku_id = " . $row['buku_id'] . " AND user_id = " . $_SESSION['id'];
+                        $result2 = mysqli_query($konek, $query2);
+                        if ($result2->num_rows < 1) {
+                        ?>
+                            <a href="../actions/tambah_favorit.php?id=<?= $row['buku_id'] ?>">
+                                <button class="button-header"><i class="fa fa-heart"></i> Add to Favorite</button>
+                            </a>
+                        <?php } else { ?>
+                            <a href="../actions/tambah_favorit.php?id=<?= $row['buku_id'] ?>">
+                                <button class="button-header favorited"><i class="fa fa-heart"></i> Favorited!</button>
+                            </a>
+                        <?php } ?>
+                    </div>
                 </div>
-            </div>
-            <div class="image">
-                <img src="../../dist/img/book/<?= $row['image'] ?>" alt="">
-            </div>
+                <div class="image">
+                    <img src="../../dist/img/book/<?= $row['image'] ?>" alt="">
+                </div>
+            <?php } ?>
         </div>
     </div>
 

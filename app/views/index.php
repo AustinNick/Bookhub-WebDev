@@ -53,7 +53,6 @@
           <p class="genre"><?= $row['nama_kategori'] ?></p>
           <p class="judul-buku"><?= $row['judul'] ?></p>
           <p class="author">by <?= $row['penulis'] ?></p>
-
           <p class="deskripsi"><?= $row['sinopsis'] ?></p>
 
           <table class="wrap-detil">
@@ -79,7 +78,9 @@
                 <button class="button-header"><i class="fa fa-heart"></i> Add to Favorite</button>
               </a>
             <?php } else { ?>
-              <button class="button-header favorited"><i class="fa fa-heart"></i> Favorited!</button>
+              <a href="../actions/tambah_favorit.php?id=<?= $row['buku_id'] ?>">
+                <button class="button-header favorited"><i class="fa fa-heart"></i> Favorited!</button>
+              </a>
             <?php } ?>
           </div>
         </div>

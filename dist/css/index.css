@@ -1,9 +1,23 @@
+html,
+body {
+    height: 100%;
+}
+
 .container {
     background: url('../img/index/background-header.png') no-repeat center fixed;
     background-size: cover;
     height: 60vh;
     box-shadow: 0 1px 10px black;
     /* border-radius: 0 0 100px 0; */
+}
+
+.nulldata {
+    width: 100%;
+    text-align: center;
+    margin-top: 7.5%;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
 }
 
 .top-nav {
@@ -297,6 +311,14 @@ a {
     border-radius: 10px;
     object-fit: cover;
     height: 303px;
+}
+
+.nobook-bwh {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
 }
 
 .footer {

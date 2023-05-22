@@ -18,14 +18,16 @@
     include_once("includes/header.php");
     ?>
 
-    <div class="content">
-        <?php if (function_exists('customPageHeader')) {
-            customPageHeader();
-        } ?>
-    </div>
+    <div class="wrap">
+        <div class="content">
+            <?php if (function_exists('customPageHeader')) {
+                customPageHeader();
+            } ?>
+        </div>
 
-    <div class="footer">
-        <p>BookHub &copy; 2021</p>
+        <div class="footer">
+            <p>BookHub &copy; 2021</p>
+        </div>
     </div>
 </body>
 
