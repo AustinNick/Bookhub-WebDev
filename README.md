@@ -1,6 +1,6 @@
 # Bookhub-Project-WebDev
 
-Ini adalah tugas kelompok untuk memenuhi tugas UAS mata kuliah Pemrograman Web. 
+Ini adalah tugas kelompok untuk memenuhi tugas UAS mata kuliah Pemrograman Web.
 
 Kelompok kami terdiri dari 3 orang yaitu:
 
@@ -12,8 +12,14 @@ Project ini dibuat menggunakan HTML, dan CSS untuk front-end, PHP untuk back-end
 
 ## Cara menggunakan
 
---
+1. Clone repository ini ke dalam folder htdocs di XAMPP.
+2. Import database `bookhub.sql` ke dalam MySQL.
+3. Buka XAMPP dan jalankan Apache dan MySQL.
+4. Buka browser dan ketik `localhost/Bookhub-Project-WebDev` pada URL.
+5. Login dengan username `admin` dan password `admin` untuk masuk ke halaman admin.
+6. Login dengan username `user` dan password `user` untuk masuk ke halaman user.
+7. Selamat mencoba!
 
-<hr>
+---
 
 *Note: Project ini belum selesai dan masih dalam tahap pengembangan.*
