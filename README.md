@@ -1,6 +1,6 @@
-# Bookhub-Project-WebDev
+# Bookhub-Project
 
-Ini adalah tugas kelompok untuk memenuhi tugas UAS mata kuliah Pemrograman Web.
+Ini adalah tugas kelompok untuk memenuhi tugas UAS mata kuliah Pemrograman Web Universitas Pradita.
 
 Kelompok kami terdiri dari 3 orang yaitu:
 
