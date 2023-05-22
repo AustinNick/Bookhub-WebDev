@@ -22,4 +22,4 @@ Project ini dibuat menggunakan HTML, dan CSS untuk front-end, PHP untuk back-end
 
 ---
 
-*Note: Project ini belum selesai dan masih dalam tahap pengembangan.*
+*Note: Project ini belum 100% selesai dan masih dalam tahap pengembangan.*
